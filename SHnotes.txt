@@ -1,0 +1,103 @@
+Notes:
+-Main code starts at "User input :" comment (row 1882)
+-Runtime original, just some minor code cleanup: 75 min
+-Runtime with removed priority 5 and 6 jobs: 45 min
+-Runtime with removed P4, P5, & P6 jobs: 2.5 min
+
+Sequence of main file:
+-Import all files
+-Remove priority 4-6 jobs that are irrelevant jobs (h=0, c=0, extra p4-6 jobs)
+-Preprocess worker numbers, proficiencies, and add wtocont column
+-Find unique WONUMS for J list (jobnum_uq)
+-Add worker IDs that are in calendar but not proficiency list and vice versa
+-Filter so it only has Shift 2 jobs and weekdays
+-create list of calendar dates
+-set numw, numt, max runtime
+[START WHILE LOOP]
+-OPTIMIZE
+-Identify incomplete jobs and their workers
+-Identify delta_jw = 1 instances [NOT WORKING PROPERLY!]
+-Update HJ and remove completed jobs
+-Add removed PM jobs back in?
+-Rewrite .csv file
+-print total time
+
+Sequence of OPTIMIZE function:
+-Pre-process to handle multi-task jobs? Or just change them to 59???
+-Manipulate date columns
+-Identify days of the week [VERY INEFFICIENT]
+-Handle outages (remove those not in window, keeping those with J in window)
+-group jobs by WONUM/J [HAVEN'T DEEPLY REVIEWED, STARTS LINE 219 (~120 lines)]
+-extract information from e_wt/dfcalw_bss
+-extract information about worker availability E_w
+-count number of decision variables
+-functions to find worker proficiencies
+-more functions that are used later (getxindex, convert_to_int, etc.)
+-functions to create table drawing
+-createLRHS() generates constraints: 20,19,18,16,17,15,12,13,2,1,3,5,4,6,7,8,9,10,11,14
+-applies removedupl() to each set of constraints
+-add each constraint to the myLHS and my_RHS variables
+-create objective function with Objcoeff()
+-define constraint types (G,E,L)
+-function to exclude weekends
+-Adds back CM P4 jobs: # There are some CM jobs with priority[i] = 4 [MAY NEED TO MOVE]
+-Main stuff: create constraints & objective, and create problem w vars
+-Create table and legend figures
+-Write output to csv file
+
+Questions:
+-what is wtocont in dfcopy (line 1941)? It seems to be an indication of whether a job must continue. Is it the best way to track?
+-what's the diff between dfcopy and dfall? do we ever use df again after making dfcopy? it seems that we're just copying back and forth...
+-why does dfcalw.SCHEDULE_DATE=pd.to_datetime(dfcalw.SCHEDULE_DATE) set a time of 0:00:00?
+-why is twenty_bss_dates showing all 366 days?
+-what's the diff between dailyoutputcsv and dailyoutputcsv_main? Seems to just be the header row.
+-is DUEDUE really needed?
+-What is the first set of myLHS.append([]) doing?
+
+Things to do:
+-Make sure dropped P4-P6 jobs are not in same WONUM as kept jobs
+-Add 2021 date capabilities to twenty_bss_dates, bzzhours, year2020dates
+
+Things to check:
+-what does this line do? workingc = list(dict.fromkeys(workingc))
+-what does this line do? dfall.at[f, 'wtocont'].append(assignedw[counter1])
+-check on what is actually happening with Alljwdelta1
+-should "if k in scheduledj:" be "if k in scheduledJ:"????
+-Can we instead track everything in ONE dataframe?
+-Is this at all necessary? dfall["HOURS"] = hhours
+
+Assumptions/limitations:
+-All 8+ hour jobs are rewritten as 8 hours
+-Jobs with crew_size = 0 are dropped
+-Cannot handle grandfathered Jobs that started previous week
+-Only handling "Shift 2": 7-3:30 and assuming 8 continuous hours
+-Excluding Sat and Sun with day_exclusion (and again later)
+-dfn sets dates to 2020 calendar
+-all scheduled jobs that are 8 or fewer hours get removed/set to H = 0 at line: if HJ[i] <= 8:
+-all jobs with more than one proficiency required get set to task '59'
+-
+
+Changes:
+-commented out block with creation of presplitJ, jobdict_J_WONUM, and profecy_colnames, which are never used
+-commented out calendarstring creation, which is never used
+-commented out redundant filtering of Shift 2 data
+-commented out df_original, which was never used
+-commented out df_khar, which was never used
+-removed unnecessary if Mx[1:][u][v] != 0 :
+-commented out second removedrow = [] instance
+-commented out this + 3 more lines: print("a_1592,khar optaj",optaj[1592])
+-commented out this +3 lines: print("a_1592,optaj", optaj[1592])
+-made dropping of crewsize and hours = 0 more efficient
+-removed dfnew, since it didn't do anything
+-removed the target_week and target_weekZ columns from dfall, since they don't do anything
+-removed all outage_req and outage_end variables
+-commented out calcA; changed twopower name to tenpower
+-commented out findjt, findjw, dicte where are never used
+-made workercolor more line-efficient
+-commented out due1 and Ypm1 stuff, since it didn't do anything
+-
+
+Questions for Con Ed:
+-resource calendar is only for a week. What to do with >40 hour jobs, since we don't know availability for next week?
+-difference between DUE_DATE and FIXED_DATE? ??
+-what to do with DUE_DATE before now?
