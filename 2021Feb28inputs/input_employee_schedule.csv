@@ -1,0 +1,299 @@
+﻿SECTION,EMPLOYEE_ID,LABOR_GROUP,LAST_NAME,FIRST_NAME,SCHEDULE_DATE,SHIFT_CODE,SHIFT_DESC,SHIFT_START,HOURS,AVAILABILITY_TYPE
+SSO Manh Maint,21101,MANH - W42nd St,Gibbs,Devri,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,21101,MANH - W42nd St,Gibbs,Devri,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,21101,MANH - W42nd St,Gibbs,Devri,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,21101,MANH - W42nd St,Gibbs,Devri,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,17216,MANH - W42nd St,Hernandez,Narciso,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,17216,MANH - W42nd St,Hernandez,Narciso,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,17216,MANH - W42nd St,Hernandez,Narciso,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,17216,MANH - W42nd St,Hernandez,Narciso,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,16179,MANH - W42nd St,Husbands,Jerry,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,16179,MANH - W42nd St,Husbands,Jerry,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,16179,MANH - W42nd St,Husbands,Jerry,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,16179,MANH - W42nd St,Husbands,Jerry,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,16179,MANH - W42nd St,Husbands,Jerry,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,16179,MANH - W42nd St,Husbands,Jerry,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,13009,MANH - W42nd St,Galletto,Antonio,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,13009,MANH - W42nd St,Galletto,Antonio,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,20602,MANH - TRF,Ellis,Dexton,2021-03-03,T,Training,2021-03-03 07:00:00,8,Unavailable
+SSO Manh Maint,25803,MANH - TRF,Simmons,LaShauna,2021-03-03,T,Training,2021-03-03 07:00:00,8,Unavailable
+SSO Manh Maint,01823,MANH - W49th St,Costanzo,Stephen,2021-03-03,T,Training,2021-03-03 07:00:00,8,Unavailable
+SSO Manh Maint,22201,MANH - TRF,Lugo,Mario,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,22201,MANH - TRF,Lugo,Mario,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,22201,MANH - TRF,Lugo,Mario,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,22201,MANH - TRF,Lugo,Mario,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,22201,MANH - TRF,Lugo,Mario,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,22201,MANH - TRF,Lugo,Mario,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,20602,MANH - TRF,Ellis,Dexton,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,20602,MANH - TRF,Ellis,Dexton,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,20602,MANH - TRF,Ellis,Dexton,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,20602,MANH - TRF,Ellis,Dexton,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,20602,MANH - TRF,Ellis,Dexton,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,20602,MANH - TRF,Ellis,Dexton,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,18004,MANH - TRF,Fontanez,Daniel,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,04203,MANH - TRF,Garcia,Darwin,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,04203,MANH - TRF,Garcia,Darwin,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,00601,MANH - TRF,Hart,Timothy,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,00601,MANH - TRF,Hart,Timothy,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,00601,MANH - TRF,Hart,Timothy,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,00601,MANH - TRF,Hart,Timothy,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,00601,MANH - TRF,Hart,Timothy,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,00601,MANH - TRF,Hart,Timothy,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,00601,MANH - TRF,Hart,Timothy,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,30885,MANH - TRF,Givans,Roydel,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,13945,MANH - TRF,Winston,Jarrell,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,04443,MANH - TRF,Shea,Owen,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,04443,MANH - TRF,Shea,Owen,2021-03-01,3,Shift 3: 3pm-11pm,2021-03-01 15:00:00,8,Standard
+SSO Manh Maint,04443,MANH - TRF,Shea,Owen,2021-03-02,3,Shift 3: 3pm-11pm,2021-03-02 15:00:00,8,Standard
+SSO Manh Maint,04443,MANH - TRF,Shea,Owen,2021-03-03,3,Shift 3: 3pm-11pm,2021-03-03 15:00:00,8,Standard
+SSO Manh Maint,04443,MANH - TRF,Shea,Owen,2021-03-04,3,Shift 3: 3pm-11pm,2021-03-04 15:00:00,8,Standard
+SSO Manh Maint,04443,MANH - TRF,Shea,Owen,2021-03-05,3,Shift 3: 3pm-11pm,2021-03-05 15:00:00,8,Standard
+SSO Manh Maint,04443,MANH - TRF,Shea,Owen,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,25803,MANH - TRF,Simmons,LaShauna,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,25803,MANH - TRF,Simmons,LaShauna,2021-03-01,3,Shift 3: 3pm-11pm,2021-03-01 15:00:00,8,Standard
+SSO Manh Maint,25803,MANH - TRF,Simmons,LaShauna,2021-03-02,3,Shift 3: 3pm-11pm,2021-03-02 15:00:00,8,Standard
+SSO Manh Maint,25803,MANH - TRF,Simmons,LaShauna,2021-03-04,3,Shift 3: 3pm-11pm,2021-03-04 15:00:00,8,Standard
+SSO Manh Maint,25803,MANH - TRF,Simmons,LaShauna,2021-03-05,3,Shift 3: 3pm-11pm,2021-03-05 15:00:00,8,Standard
+SSO Manh Maint,25803,MANH - TRF,Simmons,LaShauna,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,16743,MANH - TRF,Cavitolo,Anthony,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,16743,MANH - TRF,Cavitolo,Anthony,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,16743,MANH - TRF,Cavitolo,Anthony,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,16743,MANH - TRF,Cavitolo,Anthony,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,16743,MANH - TRF,Cavitolo,Anthony,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,16743,MANH - TRF,Cavitolo,Anthony,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,16743,MANH - TRF,Cavitolo,Anthony,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,01775,MANH - TRF,Johnson,Alzyna,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,01775,MANH - TRF,Johnson,Alzyna,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,22336,MANH - TRF,Schiavone,Mark,2021-03-01,3,Shift 3: 3pm-11pm,2021-03-01 15:00:00,8,Standard
+SSO Manh Maint,22336,MANH - TRF,Schiavone,Mark,2021-03-02,3,Shift 3: 3pm-11pm,2021-03-02 15:00:00,8,Standard
+SSO Manh Maint,22336,MANH - TRF,Schiavone,Mark,2021-03-03,3,Shift 3: 3pm-11pm,2021-03-03 15:00:00,8,Standard
+SSO Manh Maint,22336,MANH - TRF,Schiavone,Mark,2021-03-04,3,Shift 3: 3pm-11pm,2021-03-04 15:00:00,8,Standard
+SSO Manh Maint,22336,MANH - TRF,Schiavone,Mark,2021-03-05,3,Shift 3: 3pm-11pm,2021-03-05 15:00:00,8,Standard
+SSO Manh Maint,22336,MANH - TRF,Schiavone,Mark,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,17216,MANH - W42nd St,Hernandez,Narciso,2021-03-03,T,Training,2021-03-03 07:00:00,8,Unavailable
+SSO Manh Maint,01197,MANH - W49th St,Coccaro,Michael,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,01197,MANH - W49th St,Coccaro,Michael,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,01197,MANH - W49th St,Coccaro,Michael,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,01197,MANH - W49th St,Coccaro,Michael,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,01197,MANH - W49th St,Coccaro,Michael,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,01197,MANH - W49th St,Coccaro,Michael,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,01197,MANH - W49th St,Coccaro,Michael,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,24752,MANH - W49th St,Jonny,Matthew,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,24752,MANH - W49th St,Jonny,Matthew,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,24752,MANH - W49th St,Jonny,Matthew,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,24752,MANH - W49th St,Jonny,Matthew,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,24752,MANH - W49th St,Jonny,Matthew,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,24752,MANH - W49th St,Jonny,Matthew,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,01823,MANH - W49th St,Costanzo,Stephen,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,01823,MANH - W49th St,Costanzo,Stephen,2021-03-01,3,Shift 3: 3pm-11pm,2021-03-01 15:00:00,8,Standard
+SSO Manh Maint,01823,MANH - W49th St,Costanzo,Stephen,2021-03-02,3,Shift 3: 3pm-11pm,2021-03-02 15:00:00,8,Standard
+SSO Manh Maint,01823,MANH - W49th St,Costanzo,Stephen,2021-03-04,3,Shift 3: 3pm-11pm,2021-03-04 15:00:00,8,Standard
+SSO Manh Maint,01823,MANH - W49th St,Costanzo,Stephen,2021-03-05,3,Shift 3: 3pm-11pm,2021-03-05 15:00:00,8,Standard
+SSO Manh Maint,01823,MANH - W49th St,Costanzo,Stephen,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,22201,MANH - TRF,Lugo,Mario,2021-03-04,T4,Training 4 Hrs.,2021-03-04 07:00:00,4,Unavailable
+SSO Manh Maint,21572,MANH - E13th St / ER,Dornbush,Jonathan,2021-03-04,T4,Training 4 Hrs.,2021-03-04 07:00:00,4,Unavailable
+SSO Manh Maint,24126,MANH - Seaport,Fasciana,Jared,2021-03-04,T4,Training 4 Hrs.,2021-03-04 07:00:00,4,Unavailable
+SSO Manh Maint,88833,MANH - Murray Hill / E40th St,Fontana,William,2021-03-04,T4,Training 4 Hrs.,2021-03-04 07:00:00,4,Unavailable
+SSO Manh Maint,13031,MANH - Murray Hill / E40th St,Luce,David,2021-03-04,T4,Training 4 Hrs.,2021-03-04 07:00:00,4,Unavailable
+SSO Manh Maint,09019,MANH - Murray Hill / E40th St,Malagreca,Michael,2021-03-04,T4,Training 4 Hrs.,2021-03-04 07:00:00,4,Unavailable
+SSO Manh Maint,87163,MANH - Murray Hill / E40th St,Russo,David,2021-03-04,T4,Training 4 Hrs.,2021-03-04 07:00:00,4,Unavailable
+SSO Manh Maint,30976,MANH - TRF,Anderson,Lamont,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,30976,MANH - TRF,Anderson,Lamont,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,29358,MANH - Seaport,Chin-Sang,Nichola,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,29358,MANH - Seaport,Chin-Sang,Nichola,2021-03-01,X,Regular Day Off,2021-03-01 00:00:00,8,Unavailable
+SSO Manh Maint,29358,MANH - Seaport,Chin-Sang,Nichola,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,29358,MANH - Seaport,Chin-Sang,Nichola,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,29358,MANH - Seaport,Chin-Sang,Nichola,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,29358,MANH - Seaport,Chin-Sang,Nichola,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,29358,MANH - Seaport,Chin-Sang,Nichola,2021-03-06,2,Shift 2: 7am-3:30pm,2021-03-06 07:00:00,8,Standard
+SSO Manh Maint,24126,MANH - Seaport,Fasciana,Jared,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,24126,MANH - Seaport,Fasciana,Jared,2021-03-01,X,Regular Day Off,2021-03-01 00:00:00,8,Unavailable
+SSO Manh Maint,24126,MANH - Seaport,Fasciana,Jared,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,24126,MANH - Seaport,Fasciana,Jared,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,24126,MANH - Seaport,Fasciana,Jared,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,24126,MANH - Seaport,Fasciana,Jared,2021-03-06,2,Shift 2: 7am-3:30pm,2021-03-06 07:00:00,8,Standard
+SSO Manh Maint,24348,MANH - Seaport,Murphy,Marianne,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,24348,MANH - Seaport,Murphy,Marianne,2021-03-01,X,Regular Day Off,2021-03-01 00:00:00,8,Unavailable
+SSO Manh Maint,24348,MANH - Seaport,Murphy,Marianne,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,24348,MANH - Seaport,Murphy,Marianne,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,24348,MANH - Seaport,Murphy,Marianne,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,24348,MANH - Seaport,Murphy,Marianne,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,24348,MANH - Seaport,Murphy,Marianne,2021-03-06,2,Shift 2: 7am-3:30pm,2021-03-06 07:00:00,8,Standard
+SSO Manh Maint,07596,MANH - Seaport,Tunon,Modesto,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,07596,MANH - Seaport,Tunon,Modesto,2021-03-01,X,Regular Day Off,2021-03-01 00:00:00,8,Unavailable
+SSO Manh Maint,07596,MANH - Seaport,Tunon,Modesto,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,07596,MANH - Seaport,Tunon,Modesto,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,07596,MANH - Seaport,Tunon,Modesto,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,07596,MANH - Seaport,Tunon,Modesto,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,07596,MANH - Seaport,Tunon,Modesto,2021-03-06,2,Shift 2: 7am-3:30pm,2021-03-06 07:00:00,8,Standard
+SSO Manh Maint,01775,MANH - TRF,Johnson,Alzyna,2021-03-01,T,Training,2021-03-01 07:00:00,8,Unavailable
+SSO Manh Maint,01775,MANH - TRF,Johnson,Alzyna,2021-03-02,T,Training,2021-03-02 07:00:00,8,Unavailable
+SSO Manh Maint,01775,MANH - TRF,Johnson,Alzyna,2021-03-04,T,Training,2021-03-04 07:00:00,8,Unavailable
+SSO Manh Maint,01775,MANH - TRF,Johnson,Alzyna,2021-03-03,T,Training,2021-03-03 07:00:00,8,Unavailable
+SSO Manh Maint,01775,MANH - TRF,Johnson,Alzyna,2021-03-05,T,Training,2021-03-05 07:00:00,8,Unavailable
+SSO Manh Maint,15492,MANH - ASM,Galderisi,Richard,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,15492,MANH - ASM,Galderisi,Richard,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,15492,MANH - ASM,Galderisi,Richard,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,15492,MANH - ASM,Galderisi,Richard,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,15492,MANH - ASM,Galderisi,Richard,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,15492,MANH - ASM,Galderisi,Richard,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,15492,MANH - ASM,Galderisi,Richard,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,09030,MANH - ASM,Pizzolo,Jonathan,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,09030,MANH - ASM,Pizzolo,Jonathan,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,09030,MANH - ASM,Pizzolo,Jonathan,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,09030,MANH - ASM,Pizzolo,Jonathan,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,09030,MANH - ASM,Pizzolo,Jonathan,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,09030,MANH - ASM,Pizzolo,Jonathan,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,09030,MANH - ASM,Pizzolo,Jonathan,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,33142,MANH - ASM,Portuondo,Jason,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,33142,MANH - ASM,Portuondo,Jason,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,33142,MANH - ASM,Portuondo,Jason,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,33142,MANH - ASM,Portuondo,Jason,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,33142,MANH - ASM,Portuondo,Jason,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,33142,MANH - ASM,Portuondo,Jason,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,07328,MANH - ASM,Romolo,Frank,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,07328,MANH - ASM,Romolo,Frank,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,07328,MANH - ASM,Romolo,Frank,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,07328,MANH - ASM,Romolo,Frank,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,07328,MANH - ASM,Romolo,Frank,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,07328,MANH - ASM,Romolo,Frank,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,07328,MANH - ASM,Romolo,Frank,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,07270,MANH - ASM,Russo,John,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,07270,MANH - ASM,Russo,John,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,07270,MANH - ASM,Russo,John,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,07270,MANH - ASM,Russo,John,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,07270,MANH - ASM,Russo,John,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,07270,MANH - ASM,Russo,John,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,07270,MANH - ASM,Russo,John,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,24441,MANH - ASM,Small,Kadeem,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,24441,MANH - ASM,Small,Kadeem,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,24441,MANH - ASM,Small,Kadeem,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,24441,MANH - ASM,Small,Kadeem,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,24441,MANH - ASM,Small,Kadeem,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,24441,MANH - ASM,Small,Kadeem,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,24441,MANH - ASM,Small,Kadeem,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,13945,MANH - TRF,Winston,Jarrell,2021-03-01,T,Training,2021-03-01 07:00:00,8,Unavailable
+SSO Manh Maint,13945,MANH - TRF,Winston,Jarrell,2021-03-02,T,Training,2021-03-02 07:00:00,8,Unavailable
+SSO Manh Maint,13945,MANH - TRF,Winston,Jarrell,2021-03-03,T,Training,2021-03-03 07:00:00,8,Unavailable
+SSO Manh Maint,13945,MANH - TRF,Winston,Jarrell,2021-03-04,T,Training,2021-03-04 07:00:00,8,Unavailable
+SSO Manh Maint,13945,MANH - TRF,Winston,Jarrell,2021-03-05,T,Training,2021-03-05 07:00:00,8,Unavailable
+SSO Manh Maint,13009,MANH - W42nd St,Galletto,Antonio,2021-03-01,FL,NY Family Leave (With Pay),2021-03-01 07:00:00,8,Unavailable
+SSO Manh Maint,13009,MANH - W42nd St,Galletto,Antonio,2021-03-02,FL,NY Family Leave (With Pay),2021-03-02 07:00:00,8,Unavailable
+SSO Manh Maint,13009,MANH - W42nd St,Galletto,Antonio,2021-03-03,FL,NY Family Leave (With Pay),2021-03-03 07:00:00,8,Unavailable
+SSO Manh Maint,13009,MANH - W42nd St,Galletto,Antonio,2021-03-04,FL,NY Family Leave (With Pay),2021-03-04 07:00:00,8,Unavailable
+SSO Manh Maint,13009,MANH - W42nd St,Galletto,Antonio,2021-03-05,FL,NY Family Leave (With Pay),2021-03-05 07:00:00,8,Unavailable
+SSO Manh Maint,30192,MANH - E13th St / ER,Beltran,Jose,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,24327,MANH - E13th St / ER,Cox,Jermaine,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,19743,MANH - E13th St / ER,Fiote,Herald,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,02102,MANH - E13th St / ER,Giaramita,William,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,04607,MANH - E13th St / ER,Sparrow,Shawn,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,21572,MANH - E13th St / ER,Dornbush,Jonathan,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,88833,MANH - Murray Hill / E40th St,Fontana,William,2021-03-01,MD,Medical Visit 8 Hrs,2021-03-01 07:00:00,8,Unavailable
+SSO Manh Maint,13945,MANH - TRF,Winston,Jarrell,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,24346,MANH - TRF,Melidosian,Michael,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,18004,MANH - TRF,Fontanez,Daniel,2021-02-28,2,Shift 2: 7am-3:30pm,2021-02-28 07:00:00,8,Standard
+SSO Manh Maint,30885,MANH - TRF,Givans,Roydel,2021-03-06,2,Shift 2: 7am-3:30pm,2021-03-06 07:00:00,8,Standard
+SSO Manh Maint,88833,MANH - Murray Hill / E40th St,Fontana,William,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,88833,MANH - Murray Hill / E40th St,Fontana,William,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,88833,MANH - Murray Hill / E40th St,Fontana,William,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,88833,MANH - Murray Hill / E40th St,Fontana,William,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,88833,MANH - Murray Hill / E40th St,Fontana,William,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,09019,MANH - Murray Hill / E40th St,Malagreca,Michael,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,09019,MANH - Murray Hill / E40th St,Malagreca,Michael,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,09019,MANH - Murray Hill / E40th St,Malagreca,Michael,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,09019,MANH - Murray Hill / E40th St,Malagreca,Michael,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,09019,MANH - Murray Hill / E40th St,Malagreca,Michael,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,09019,MANH - Murray Hill / E40th St,Malagreca,Michael,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,87163,MANH - Murray Hill / E40th St,Russo,David,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,87163,MANH - Murray Hill / E40th St,Russo,David,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,87163,MANH - Murray Hill / E40th St,Russo,David,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,87163,MANH - Murray Hill / E40th St,Russo,David,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,87163,MANH - Murray Hill / E40th St,Russo,David,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,87163,MANH - Murray Hill / E40th St,Russo,David,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,13031,MANH - Murray Hill / E40th St,Luce,David,2021-02-28,2,Shift 2: 7am-3:30pm,2021-02-28 07:00:00,8,Standard
+SSO Manh Maint,24755,MANH - Murray Hill / E40th St,Shea,David,2021-02-28,2,Shift 2: 7am-3:30pm,2021-02-28 07:00:00,8,Standard
+SSO Manh Maint,13031,MANH - Murray Hill / E40th St,Luce,David,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,13031,MANH - Murray Hill / E40th St,Luce,David,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,13031,MANH - Murray Hill / E40th St,Luce,David,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,13031,MANH - Murray Hill / E40th St,Luce,David,2021-03-05,X,Regular Day Off,2021-03-05 00:00:00,8,Unavailable
+SSO Manh Maint,13031,MANH - Murray Hill / E40th St,Luce,David,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,24755,MANH - Murray Hill / E40th St,Shea,David,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,24755,MANH - Murray Hill / E40th St,Shea,David,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,24755,MANH - Murray Hill / E40th St,Shea,David,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,24755,MANH - Murray Hill / E40th St,Shea,David,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,24755,MANH - Murray Hill / E40th St,Shea,David,2021-03-05,X,Regular Day Off,2021-03-05 00:00:00,8,Unavailable
+SSO Manh Maint,24755,MANH - Murray Hill / E40th St,Shea,David,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,33142,MANH - ASM,Portuondo,Jason,2021-03-05,C,Carry Over,2021-03-05 07:00:00,8,Unavailable
+SSO Manh Maint,24752,MANH - W49th St,Jonny,Matthew,2021-03-04,T4,Training 4 Hrs.,2021-03-04 07:00:00,4,Unavailable
+SSO Manh Maint,24752,MANH - W49th St,Jonny,Matthew,2021-03-04,A4,Available 4 Hrs.,2021-03-04 07:00:00,4,Standard
+SSO Manh Maint,24346,MANH - TRF,Melidosian,Michael,2021-02-28,2,Shift 2: 7am-3:30pm,2021-02-28 07:00:00,8,Standard
+SSO Manh Maint,30885,MANH - TRF,Givans,Roydel,2021-03-01,X,Regular Day Off,2021-03-01 00:00:00,8,Unavailable
+SSO Manh Maint,30885,MANH - TRF,Givans,Roydel,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,30885,MANH - TRF,Givans,Roydel,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,30885,MANH - TRF,Givans,Roydel,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,30885,MANH - TRF,Givans,Roydel,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,22336,MANH - TRF,Schiavone,Mark,2021-02-28,X,Regular Day Off,2021-02-28 00:00:00,8,Unavailable
+SSO Manh Maint,24346,MANH - TRF,Melidosian,Michael,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,24346,MANH - TRF,Melidosian,Michael,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,24346,MANH - TRF,Melidosian,Michael,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,24346,MANH - TRF,Melidosian,Michael,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,24346,MANH - TRF,Melidosian,Michael,2021-03-05,X,Regular Day Off,2021-03-05 00:00:00,8,Unavailable
+SSO Manh Maint,30976,MANH - TRF,Anderson,Lamont,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,30976,MANH - TRF,Anderson,Lamont,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,30976,MANH - TRF,Anderson,Lamont,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,30976,MANH - TRF,Anderson,Lamont,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,30976,MANH - TRF,Anderson,Lamont,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,18004,MANH - TRF,Fontanez,Daniel,2021-03-05,X,Regular Day Off,2021-03-05 00:00:00,8,Unavailable
+SSO Manh Maint,18004,MANH - TRF,Fontanez,Daniel,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,18004,MANH - TRF,Fontanez,Daniel,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,18004,MANH - TRF,Fontanez,Daniel,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,18004,MANH - TRF,Fontanez,Daniel,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,04203,MANH - TRF,Garcia,Darwin,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,04203,MANH - TRF,Garcia,Darwin,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,04203,MANH - TRF,Garcia,Darwin,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,04203,MANH - TRF,Garcia,Darwin,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,04203,MANH - TRF,Garcia,Darwin,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,30192,MANH - E13th St / ER,Beltran,Jose,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,30192,MANH - E13th St / ER,Beltran,Jose,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,30192,MANH - E13th St / ER,Beltran,Jose,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,30192,MANH - E13th St / ER,Beltran,Jose,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,30192,MANH - E13th St / ER,Beltran,Jose,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,30192,MANH - E13th St / ER,Beltran,Jose,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,24327,MANH - E13th St / ER,Cox,Jermaine,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,24327,MANH - E13th St / ER,Cox,Jermaine,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,24327,MANH - E13th St / ER,Cox,Jermaine,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,24327,MANH - E13th St / ER,Cox,Jermaine,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,24327,MANH - E13th St / ER,Cox,Jermaine,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,24327,MANH - E13th St / ER,Cox,Jermaine,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,19743,MANH - E13th St / ER,Fiote,Herald,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,19743,MANH - E13th St / ER,Fiote,Herald,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,19743,MANH - E13th St / ER,Fiote,Herald,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,19743,MANH - E13th St / ER,Fiote,Herald,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,19743,MANH - E13th St / ER,Fiote,Herald,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,19743,MANH - E13th St / ER,Fiote,Herald,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,02102,MANH - E13th St / ER,Giaramita,William,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,02102,MANH - E13th St / ER,Giaramita,William,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,02102,MANH - E13th St / ER,Giaramita,William,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,02102,MANH - E13th St / ER,Giaramita,William,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,02102,MANH - E13th St / ER,Giaramita,William,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,02102,MANH - E13th St / ER,Giaramita,William,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,04607,MANH - E13th St / ER,Sparrow,Shawn,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,04607,MANH - E13th St / ER,Sparrow,Shawn,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,04607,MANH - E13th St / ER,Sparrow,Shawn,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,04607,MANH - E13th St / ER,Sparrow,Shawn,2021-03-04,2,Shift 2: 7am-3:30pm,2021-03-04 07:00:00,8,Standard
+SSO Manh Maint,04607,MANH - E13th St / ER,Sparrow,Shawn,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,04607,MANH - E13th St / ER,Sparrow,Shawn,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,21572,MANH - E13th St / ER,Dornbush,Jonathan,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,21572,MANH - E13th St / ER,Dornbush,Jonathan,2021-03-02,2,Shift 2: 7am-3:30pm,2021-03-02 07:00:00,8,Standard
+SSO Manh Maint,21572,MANH - E13th St / ER,Dornbush,Jonathan,2021-03-03,2,Shift 2: 7am-3:30pm,2021-03-03 07:00:00,8,Standard
+SSO Manh Maint,21572,MANH - E13th St / ER,Dornbush,Jonathan,2021-03-05,2,Shift 2: 7am-3:30pm,2021-03-05 07:00:00,8,Standard
+SSO Manh Maint,21572,MANH - E13th St / ER,Dornbush,Jonathan,2021-03-06,X,Regular Day Off,2021-03-06 00:00:00,8,Unavailable
+SSO Manh Maint,21101,MANH - W42nd St,Gibbs,Devri,2021-03-03,T2,Training 2 Hrs.,2021-03-03 07:00:00,2,Unavailable
+SSO Manh Maint,21101,MANH - W42nd St,Gibbs,Devri,2021-03-03,A6,Available 6 Hrs.,2021-03-03 07:00:00,6,Standard
+SSO Manh Maint,16179,MANH - W42nd St,Husbands,Jerry,2021-03-03,T2,Training 2 Hrs.,2021-03-03 07:00:00,2,Unavailable
+SSO Manh Maint,16179,MANH - W42nd St,Husbands,Jerry,2021-03-03,A6,Available 6 Hrs.,2021-03-03 07:00:00,6,Standard
+SSO Manh Maint,21101,MANH - W42nd St,Gibbs,Devri,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,21101,MANH - W42nd St,Gibbs,Devri,2021-03-04,T,Training,2021-03-04 07:00:00,8,Unavailable
+SSO Manh Maint,17216,MANH - W42nd St,Hernandez,Narciso,2021-03-01,2,Shift 2: 7am-3:30pm,2021-03-01 07:00:00,8,Standard
+SSO Manh Maint,17216,MANH - W42nd St,Hernandez,Narciso,2021-03-02,T2,Training 2 Hrs.,2021-03-02 07:00:00,2,Unavailable
+SSO Manh Maint,17216,MANH - W42nd St,Hernandez,Narciso,2021-03-02,A6,Available 6 Hrs.,2021-03-02 07:00:00,6,Standard

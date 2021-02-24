@@ -1,0 +1,381 @@
+﻿SECTION,EMPLOYEE_ID,LABOR_GROUP,LAST_NAME,FIRST_NAME,SCHEDULE_DATE,SHIFT_CODE,SHIFT_DESC,SHIFT_START,HOURS,AVAILABILITY_TYPE
+SSO BX WC Maint,14171,BX WC - ASM,Muccio,Joseph,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,14171,BX WC - ASM,Muccio,Joseph,2020-08-05,V,Vacation,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,14171,BX WC - ASM,Muccio,Joseph,2020-08-06,V,Vacation,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,14171,BX WC - ASM,Muccio,Joseph,2020-08-07,V,Vacation,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,14171,BX WC - ASM,Muccio,Joseph,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,14882,BX WC - TRF,Franzese,Mark,2020-08-03,PH,Personal Holiday,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,00168,BX WC - ASM,Ottulich,Lee,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,00168,BX WC - ASM,Ottulich,Lee,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,00168,BX WC - ASM,Ottulich,Lee,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,00168,BX WC - ASM,Ottulich,Lee,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,23094,BX WC - Bronx,Tineo,Antonio,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,23094,BX WC - Bronx,Tineo,Antonio,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,23094,BX WC - Bronx,Tineo,Antonio,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,23094,BX WC - Bronx,Tineo,Antonio,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,23094,BX WC - Bronx,Tineo,Antonio,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,23094,BX WC - Bronx,Tineo,Antonio,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,23094,BX WC - Bronx,Tineo,Antonio,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,04205,BX WC - TRF,Hayes,John,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,04205,BX WC - TRF,Hayes,John,2020-08-03,3,Shift 3: 3pm-11pm,2020-08-03 15:00:00,8,Standard
+SSO BX WC Maint,04205,BX WC - TRF,Hayes,John,2020-08-04,3,Shift 3: 3pm-11pm,2020-08-04 15:00:00,8,Standard
+SSO BX WC Maint,04205,BX WC - TRF,Hayes,John,2020-08-05,3,Shift 3: 3pm-11pm,2020-08-05 15:00:00,8,Standard
+SSO BX WC Maint,04205,BX WC - TRF,Hayes,John,2020-08-06,3,Shift 3: 3pm-11pm,2020-08-06 15:00:00,8,Standard
+SSO BX WC Maint,04205,BX WC - TRF,Hayes,John,2020-08-07,3,Shift 3: 3pm-11pm,2020-08-07 15:00:00,8,Standard
+SSO BX WC Maint,04205,BX WC - TRF,Hayes,John,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,21896,BX WC - Bronx,Kiernan,Rory,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,21896,BX WC - Bronx,Kiernan,Rory,2020-08-03,3,Shift 3: 3pm-11pm,2020-08-03 15:00:00,8,Standard
+SSO BX WC Maint,21896,BX WC - Bronx,Kiernan,Rory,2020-08-04,3,Shift 3: 3pm-11pm,2020-08-04 15:00:00,8,Standard
+SSO BX WC Maint,21896,BX WC - Bronx,Kiernan,Rory,2020-08-05,3,Shift 3: 3pm-11pm,2020-08-05 15:00:00,8,Standard
+SSO BX WC Maint,21896,BX WC - Bronx,Kiernan,Rory,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,14171,BX WC - ASM,Muccio,Joseph,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,14171,BX WC - ASM,Muccio,Joseph,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,17372,BX WC - Westchester,Cotter,Bernard,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,17372,BX WC - Westchester,Cotter,Bernard,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,17372,BX WC - Westchester,Cotter,Bernard,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,17372,BX WC - Westchester,Cotter,Bernard,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,17372,BX WC - Westchester,Cotter,Bernard,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,17372,BX WC - Westchester,Cotter,Bernard,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,00318,BX WC - Westchester,Dio Dati,Derek,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,00318,BX WC - Westchester,Dio Dati,Derek,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,00318,BX WC - Westchester,Dio Dati,Derek,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,00318,BX WC - Westchester,Dio Dati,Derek,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,00318,BX WC - Westchester,Dio Dati,Derek,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,00318,BX WC - Westchester,Dio Dati,Derek,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,03829,BX WC - ASM,Edwards,Douglas,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,03829,BX WC - ASM,Edwards,Douglas,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,03829,BX WC - ASM,Edwards,Douglas,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,03829,BX WC - ASM,Edwards,Douglas,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,03829,BX WC - ASM,Edwards,Douglas,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,01967,BX WC - Westchester,Egan,John,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,01967,BX WC - Westchester,Egan,John,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,01967,BX WC - Westchester,Egan,John,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,01967,BX WC - Westchester,Egan,John,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,01967,BX WC - Westchester,Egan,John,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,01967,BX WC - Westchester,Egan,John,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,01967,BX WC - Westchester,Egan,John,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,14981,BX WC - ASM,Estella,Vincent,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,14981,BX WC - ASM,Estella,Vincent,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,14981,BX WC - ASM,Estella,Vincent,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,14981,BX WC - ASM,Estella,Vincent,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,14981,BX WC - ASM,Estella,Vincent,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,14981,BX WC - ASM,Estella,Vincent,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,15187,BX WC - Westchester,Foote,Lennox,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,15187,BX WC - Westchester,Foote,Lennox,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,15187,BX WC - Westchester,Foote,Lennox,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,15187,BX WC - Westchester,Foote,Lennox,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,15187,BX WC - Westchester,Foote,Lennox,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,15187,BX WC - Westchester,Foote,Lennox,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,15187,BX WC - Westchester,Foote,Lennox,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,75400,BX WC - Westchester,Gertzkis,Robert,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,75400,BX WC - Westchester,Gertzkis,Robert,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,75400,BX WC - Westchester,Gertzkis,Robert,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,75400,BX WC - Westchester,Gertzkis,Robert,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,75400,BX WC - Westchester,Gertzkis,Robert,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,75400,BX WC - Westchester,Gertzkis,Robert,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,75400,BX WC - Westchester,Gertzkis,Robert,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,18753,BX WC - ASM,Hemmings,Charles,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,18753,BX WC - ASM,Hemmings,Charles,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,18753,BX WC - ASM,Hemmings,Charles,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,18753,BX WC - ASM,Hemmings,Charles,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,18753,BX WC - ASM,Hemmings,Charles,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,12309,BX WC - ASM,Jones,David,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,12309,BX WC - ASM,Jones,David,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,12309,BX WC - ASM,Jones,David,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,12309,BX WC - ASM,Jones,David,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,12309,BX WC - ASM,Jones,David,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,12309,BX WC - ASM,Jones,David,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,12309,BX WC - ASM,Jones,David,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,16726,BX WC - Westchester,Neithardt,Robert,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,16726,BX WC - Westchester,Neithardt,Robert,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,16726,BX WC - Westchester,Neithardt,Robert,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,16726,BX WC - Westchester,Neithardt,Robert,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,16726,BX WC - Westchester,Neithardt,Robert,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,15477,BX WC - Westchester,Notis,Alan,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,15477,BX WC - Westchester,Notis,Alan,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,15477,BX WC - Westchester,Notis,Alan,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,15477,BX WC - Westchester,Notis,Alan,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,15477,BX WC - Westchester,Notis,Alan,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,15477,BX WC - Westchester,Notis,Alan,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,15477,BX WC - Westchester,Notis,Alan,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,86349,BX WC - Westchester,Occhicone,Nicholas,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,86349,BX WC - Westchester,Occhicone,Nicholas,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,07157,BX WC - Bronx,Palleschi,Stephen,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,07157,BX WC - Bronx,Palleschi,Stephen,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,07157,BX WC - Bronx,Palleschi,Stephen,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,07157,BX WC - Bronx,Palleschi,Stephen,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,07157,BX WC - Bronx,Palleschi,Stephen,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,07157,BX WC - Bronx,Palleschi,Stephen,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,07157,BX WC - Bronx,Palleschi,Stephen,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,00734,BX WC - Westchester,Pratarelli,Anthony,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,00734,BX WC - Westchester,Pratarelli,Anthony,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,00734,BX WC - Westchester,Pratarelli,Anthony,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,00734,BX WC - Westchester,Pratarelli,Anthony,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,00734,BX WC - Westchester,Pratarelli,Anthony,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,00734,BX WC - Westchester,Pratarelli,Anthony,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,00734,BX WC - Westchester,Pratarelli,Anthony,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,16413,BX WC - Westchester,Price,Dexter,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,16413,BX WC - Westchester,Price,Dexter,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,16413,BX WC - Westchester,Price,Dexter,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,16413,BX WC - Westchester,Price,Dexter,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,16413,BX WC - Westchester,Price,Dexter,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,16413,BX WC - Westchester,Price,Dexter,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,12852,BX WC - Bronx,Reeves,Daniel,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,12852,BX WC - Bronx,Reeves,Daniel,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,12852,BX WC - Bronx,Reeves,Daniel,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,12852,BX WC - Bronx,Reeves,Daniel,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,12852,BX WC - Bronx,Reeves,Daniel,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,12852,BX WC - Bronx,Reeves,Daniel,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,12852,BX WC - Bronx,Reeves,Daniel,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,14859,BX WC - Westchester,Sullivan,Neal,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,14859,BX WC - Westchester,Sullivan,Neal,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,14859,BX WC - Westchester,Sullivan,Neal,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,14859,BX WC - Westchester,Sullivan,Neal,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,14859,BX WC - Westchester,Sullivan,Neal,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,14859,BX WC - Westchester,Sullivan,Neal,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,14859,BX WC - Westchester,Sullivan,Neal,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,88029,BX WC - Westchester,Tamburrino,Scott,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,88029,BX WC - Westchester,Tamburrino,Scott,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,88029,BX WC - Westchester,Tamburrino,Scott,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,88029,BX WC - Westchester,Tamburrino,Scott,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,88029,BX WC - Westchester,Tamburrino,Scott,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,16108,BX WC - Westchester,Wilson,Scott,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,16108,BX WC - Westchester,Wilson,Scott,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,16108,BX WC - Westchester,Wilson,Scott,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,16108,BX WC - Westchester,Wilson,Scott,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,16108,BX WC - Westchester,Wilson,Scott,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,16108,BX WC - Westchester,Wilson,Scott,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,16108,BX WC - Westchester,Wilson,Scott,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,09299,BX WC - Westchester,Stoll,Erik,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,09299,BX WC - Westchester,Stoll,Erik,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,09299,BX WC - Westchester,Stoll,Erik,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,09299,BX WC - Westchester,Stoll,Erik,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,09299,BX WC - Westchester,Stoll,Erik,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,09299,BX WC - Westchester,Stoll,Erik,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,09299,BX WC - Westchester,Stoll,Erik,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,09302,BX WC - Westchester,Mastroianni,Mark,2020-08-02,2,Shift 2: 7am-3:30pm,2020-08-02 07:00:00,8,Standard
+SSO BX WC Maint,09302,BX WC - Westchester,Mastroianni,Mark,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,09302,BX WC - Westchester,Mastroianni,Mark,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,09302,BX WC - Westchester,Mastroianni,Mark,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,09302,BX WC - Westchester,Mastroianni,Mark,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,09302,BX WC - Westchester,Mastroianni,Mark,2020-08-07,X,Regular Day Off,2020-08-07 00:00:00,8,Unavailable
+SSO BX WC Maint,09302,BX WC - Westchester,Mastroianni,Mark,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,82544,BX WC - Westchester,Szela,Joseph,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,82544,BX WC - Westchester,Szela,Joseph,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,82544,BX WC - Westchester,Szela,Joseph,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,82544,BX WC - Westchester,Szela,Joseph,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,82544,BX WC - Westchester,Szela,Joseph,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,16310,BX WC - TRF,Brandstetter,William,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,16310,BX WC - TRF,Brandstetter,William,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,16310,BX WC - TRF,Brandstetter,William,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,16310,BX WC - TRF,Brandstetter,William,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,16310,BX WC - TRF,Brandstetter,William,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,16310,BX WC - TRF,Brandstetter,William,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,16310,BX WC - TRF,Brandstetter,William,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,14882,BX WC - TRF,Franzese,Mark,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,14882,BX WC - TRF,Franzese,Mark,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,14882,BX WC - TRF,Franzese,Mark,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,14882,BX WC - TRF,Franzese,Mark,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,14882,BX WC - TRF,Franzese,Mark,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,14882,BX WC - TRF,Franzese,Mark,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,16270,BX WC - TRF,Harnarain,Krishna,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,16270,BX WC - TRF,Harnarain,Krishna,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,16270,BX WC - TRF,Harnarain,Krishna,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,16270,BX WC - TRF,Harnarain,Krishna,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,16270,BX WC - TRF,Harnarain,Krishna,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,16270,BX WC - TRF,Harnarain,Krishna,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,16270,BX WC - TRF,Harnarain,Krishna,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,82054,BX WC - TRF,Presta,Aurelio,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,82054,BX WC - TRF,Presta,Aurelio,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,82054,BX WC - TRF,Presta,Aurelio,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,82054,BX WC - TRF,Presta,Aurelio,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,82054,BX WC - TRF,Presta,Aurelio,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,82054,BX WC - TRF,Presta,Aurelio,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,82054,BX WC - TRF,Presta,Aurelio,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,24753,BX WC - Bronx,Le,Vincent,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,24753,BX WC - Bronx,Le,Vincent,2020-08-03,X,Regular Day Off,2020-08-03 00:00:00,8,Unavailable
+SSO BX WC Maint,24753,BX WC - Bronx,Le,Vincent,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,24753,BX WC - Bronx,Le,Vincent,2020-08-08,2,Shift 2: 7am-3:30pm,2020-08-08 07:00:00,8,Standard
+SSO BX WC Maint,08735,BX WC - Bronx,Marrero,Eric,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,08735,BX WC - Bronx,Marrero,Eric,2020-08-03,X,Regular Day Off,2020-08-03 00:00:00,8,Unavailable
+SSO BX WC Maint,08735,BX WC - Bronx,Marrero,Eric,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,08735,BX WC - Bronx,Marrero,Eric,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,08735,BX WC - Bronx,Marrero,Eric,2020-08-08,2,Shift 2: 7am-3:30pm,2020-08-08 07:00:00,8,Standard
+SSO BX WC Maint,23574,BX WC - Westchester,Chiulli,Enzo,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,23574,BX WC - Westchester,Chiulli,Enzo,2020-08-03,X,Regular Day Off,2020-08-03 00:00:00,8,Unavailable
+SSO BX WC Maint,23574,BX WC - Westchester,Chiulli,Enzo,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,23574,BX WC - Westchester,Chiulli,Enzo,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,23574,BX WC - Westchester,Chiulli,Enzo,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,23574,BX WC - Westchester,Chiulli,Enzo,2020-08-08,2,Shift 2: 7am-3:30pm,2020-08-08 07:00:00,8,Standard
+SSO BX WC Maint,00597,BX WC - TRF,Esposito,Carlo,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,00597,BX WC - TRF,Esposito,Carlo,2020-08-03,X,Regular Day Off,2020-08-03 00:00:00,8,Unavailable
+SSO BX WC Maint,00597,BX WC - TRF,Esposito,Carlo,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,00597,BX WC - TRF,Esposito,Carlo,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,00597,BX WC - TRF,Esposito,Carlo,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,00597,BX WC - TRF,Esposito,Carlo,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,00597,BX WC - TRF,Esposito,Carlo,2020-08-08,2,Shift 2: 7am-3:30pm,2020-08-08 07:00:00,8,Standard
+SSO BX WC Maint,01831,BX WC - Westchester,Motto,Joseph,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,01831,BX WC - Westchester,Motto,Joseph,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,09010,BX WC - ASM,Argento,Eric,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,09010,BX WC - ASM,Argento,Eric,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,09010,BX WC - ASM,Argento,Eric,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,09010,BX WC - ASM,Argento,Eric,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,09010,BX WC - ASM,Argento,Eric,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,09010,BX WC - ASM,Argento,Eric,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,09010,BX WC - ASM,Argento,Eric,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,03844,BX WC - TRF,Alexander,Joseph,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,03844,BX WC - TRF,Alexander,Joseph,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,03844,BX WC - TRF,Alexander,Joseph,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,03844,BX WC - TRF,Alexander,Joseph,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,03844,BX WC - TRF,Alexander,Joseph,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,23579,BX WC - Westchester,Nappi,Andrew,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,23579,BX WC - Westchester,Nappi,Andrew,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,23579,BX WC - Westchester,Nappi,Andrew,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,23579,BX WC - Westchester,Nappi,Andrew,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,23579,BX WC - Westchester,Nappi,Andrew,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,23579,BX WC - Westchester,Nappi,Andrew,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,04197,BX WC - TRF,Devlin,Jack,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,04197,BX WC - TRF,Devlin,Jack,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,04197,BX WC - TRF,Devlin,Jack,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,04197,BX WC - TRF,Devlin,Jack,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,04197,BX WC - TRF,Devlin,Jack,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,04197,BX WC - TRF,Devlin,Jack,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,13909,BX WC - Bronx,Brown,Clive,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,13909,BX WC - Bronx,Brown,Clive,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,13909,BX WC - Bronx,Brown,Clive,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,13909,BX WC - Bronx,Brown,Clive,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,13909,BX WC - Bronx,Brown,Clive,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,13909,BX WC - Bronx,Brown,Clive,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,13909,BX WC - Bronx,Brown,Clive,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,08735,BX WC - Bronx,Marrero,Eric,2020-08-07,V,Vacation,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,16726,BX WC - Westchester,Neithardt,Robert,2020-08-03,V,Vacation,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,16726,BX WC - Westchester,Neithardt,Robert,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,23465,BX WC - TRF,Esposito,Kyle,2020-08-02,2,Shift 2: 7am-3:30pm,2020-08-02 07:00:00,8,Standard
+SSO BX WC Maint,23465,BX WC - TRF,Esposito,Kyle,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,23465,BX WC - TRF,Esposito,Kyle,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,23465,BX WC - TRF,Esposito,Kyle,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,23465,BX WC - TRF,Esposito,Kyle,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,23465,BX WC - TRF,Esposito,Kyle,2020-08-07,X,Regular Day Off,2020-08-07 00:00:00,8,Unavailable
+SSO BX WC Maint,23465,BX WC - TRF,Esposito,Kyle,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,20584,BX WC - Bronx,Waldun,Kenneth,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,20584,BX WC - Bronx,Waldun,Kenneth,2020-08-03,T,Training,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,20584,BX WC - Bronx,Waldun,Kenneth,2020-08-04,T,Training,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,20584,BX WC - Bronx,Waldun,Kenneth,2020-08-05,T,Training,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,20584,BX WC - Bronx,Waldun,Kenneth,2020-08-06,T,Training,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,20584,BX WC - Bronx,Waldun,Kenneth,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,20584,BX WC - Bronx,Waldun,Kenneth,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,22301,BX WC - Bronx,Wallace,Michael,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,22301,BX WC - Bronx,Wallace,Michael,2020-08-03,T,Training,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,22301,BX WC - Bronx,Wallace,Michael,2020-08-04,T,Training,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,22301,BX WC - Bronx,Wallace,Michael,2020-08-05,T,Training,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,22301,BX WC - Bronx,Wallace,Michael,2020-08-06,T,Training,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,22301,BX WC - Bronx,Wallace,Michael,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,22301,BX WC - Bronx,Wallace,Michael,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,88830,BX WC - Westchester,Bourke,Christopher,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,88830,BX WC - Westchester,Bourke,Christopher,2020-08-03,T,Training,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,88830,BX WC - Westchester,Bourke,Christopher,2020-08-04,T,Training,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,88830,BX WC - Westchester,Bourke,Christopher,2020-08-05,T,Training,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,88830,BX WC - Westchester,Bourke,Christopher,2020-08-06,T,Training,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,88830,BX WC - Westchester,Bourke,Christopher,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,88830,BX WC - Westchester,Bourke,Christopher,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,05506,BX WC - Westchester,Brogan,Martin,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,05506,BX WC - Westchester,Brogan,Martin,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,88675,BX WC - Westchester,Catanese,Cosimo,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,88675,BX WC - Westchester,Catanese,Cosimo,2020-08-03,T,Training,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,88675,BX WC - Westchester,Catanese,Cosimo,2020-08-04,T,Training,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,88675,BX WC - Westchester,Catanese,Cosimo,2020-08-05,T,Training,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,88675,BX WC - Westchester,Catanese,Cosimo,2020-08-06,T,Training,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,88675,BX WC - Westchester,Catanese,Cosimo,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,88675,BX WC - Westchester,Catanese,Cosimo,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,70286,BX WC - Westchester,Desiena,Dominick,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,70286,BX WC - Westchester,Desiena,Dominick,2020-08-03,T,Training,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,70286,BX WC - Westchester,Desiena,Dominick,2020-08-04,T,Training,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,70286,BX WC - Westchester,Desiena,Dominick,2020-08-05,T,Training,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,70286,BX WC - Westchester,Desiena,Dominick,2020-08-06,T,Training,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,70286,BX WC - Westchester,Desiena,Dominick,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,70286,BX WC - Westchester,Desiena,Dominick,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,70266,BX WC - Westchester,Duncan,John,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,70266,BX WC - Westchester,Duncan,John,2020-08-03,T,Training,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,70266,BX WC - Westchester,Duncan,John,2020-08-05,T,Training,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,70266,BX WC - Westchester,Duncan,John,2020-08-06,T,Training,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,70266,BX WC - Westchester,Duncan,John,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,70266,BX WC - Westchester,Duncan,John,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,00168,BX WC - ASM,Ottulich,Lee,2020-08-05,V,Vacation,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,00168,BX WC - ASM,Ottulich,Lee,2020-08-05,PH,Personal Holiday,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,00168,BX WC - ASM,Ottulich,Lee,2020-08-06,V,Vacation,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,00168,BX WC - ASM,Ottulich,Lee,2020-08-07,V,Vacation,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,10525,BX WC - Westchester,Anderson,Hector,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,10525,BX WC - Westchester,Anderson,Hector,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,10525,BX WC - Westchester,Anderson,Hector,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,10525,BX WC - Westchester,Anderson,Hector,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,10525,BX WC - Westchester,Anderson,Hector,2020-08-06,2,Shift 2: 7am-3:30pm,2020-08-06 07:00:00,8,Standard
+SSO BX WC Maint,10525,BX WC - Westchester,Anderson,Hector,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,10525,BX WC - Westchester,Anderson,Hector,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,00609,BX WC - Westchester,Tracy,Brendon,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,00609,BX WC - Westchester,Tracy,Brendon,2020-08-03,T,Training,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,00609,BX WC - Westchester,Tracy,Brendon,2020-08-04,T,Training,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,00609,BX WC - Westchester,Tracy,Brendon,2020-08-05,T,Training,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,00609,BX WC - Westchester,Tracy,Brendon,2020-08-06,T,Training,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,00609,BX WC - Westchester,Tracy,Brendon,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,00609,BX WC - Westchester,Tracy,Brendon,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,86941,BX WC - Westchester,Von Minden,Edward,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,86941,BX WC - Westchester,Von Minden,Edward,2020-08-03,T,Training,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,86941,BX WC - Westchester,Von Minden,Edward,2020-08-04,T,Training,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,86941,BX WC - Westchester,Von Minden,Edward,2020-08-05,T,Training,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,86941,BX WC - Westchester,Von Minden,Edward,2020-08-06,T,Training,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,86941,BX WC - Westchester,Von Minden,Edward,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,86941,BX WC - Westchester,Von Minden,Edward,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,24753,BX WC - Bronx,Le,Vincent,2020-08-05,T,Training,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,24753,BX WC - Bronx,Le,Vincent,2020-08-06,T,Training,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,24753,BX WC - Bronx,Le,Vincent,2020-08-07,T,Training,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,21896,BX WC - Bronx,Kiernan,Rory,2020-08-06,V,Vacation,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,21896,BX WC - Bronx,Kiernan,Rory,2020-08-07,V,Vacation,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,14981,BX WC - ASM,Estella,Vincent,2020-08-04,T2,Training 2 Hrs.,2020-08-04 07:00:00,2,Unavailable
+SSO BX WC Maint,14981,BX WC - ASM,Estella,Vincent,2020-08-04,A6,Available 6 Hrs.,2020-08-04 07:00:00,6,Standard
+SSO BX WC Maint,18753,BX WC - ASM,Hemmings,Charles,2020-08-06,T2,Training 2 Hrs.,2020-08-06 07:00:00,2,Unavailable
+SSO BX WC Maint,18753,BX WC - ASM,Hemmings,Charles,2020-08-06,A6,Available 6 Hrs.,2020-08-06 07:00:00,6,Standard
+SSO BX WC Maint,03844,BX WC - TRF,Alexander,Joseph,2020-08-03,T,Training,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,70266,BX WC - Westchester,Duncan,John,2020-08-04,T,Training,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,04202,BX WC - TRF,Ferrotta,Luca,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,04202,BX WC - TRF,Ferrotta,Luca,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,04202,BX WC - TRF,Ferrotta,Luca,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
+SSO BX WC Maint,04202,BX WC - TRF,Ferrotta,Luca,2020-08-05,2,Shift 2: 7am-3:30pm,2020-08-05 07:00:00,8,Standard
+SSO BX WC Maint,04202,BX WC - TRF,Ferrotta,Luca,2020-08-08,X,Regular Day Off,2020-08-08 00:00:00,8,Unavailable
+SSO BX WC Maint,17372,BX WC - Westchester,Cotter,Bernard,2020-08-04,T2,Training 2 Hrs.,2020-08-04 07:00:00,2,Unavailable
+SSO BX WC Maint,17372,BX WC - Westchester,Cotter,Bernard,2020-08-04,A6,Available 6 Hrs.,2020-08-04 07:00:00,6,Standard
+SSO BX WC Maint,16413,BX WC - Westchester,Price,Dexter,2020-08-04,T2,Training 2 Hrs.,2020-08-04 07:00:00,2,Unavailable
+SSO BX WC Maint,16413,BX WC - Westchester,Price,Dexter,2020-08-04,A6,Available 6 Hrs.,2020-08-04 07:00:00,6,Standard
+SSO BX WC Maint,05506,BX WC - Westchester,Brogan,Martin,2020-08-03,X,Regular Day Off,2020-08-03 00:00:00,8,Unavailable
+SSO BX WC Maint,05506,BX WC - Westchester,Brogan,Martin,2020-08-05,X,Regular Day Off,2020-08-05 00:00:00,8,Unavailable
+SSO BX WC Maint,05506,BX WC - Westchester,Brogan,Martin,2020-08-04,X,Regular Day Off,2020-08-04 00:00:00,8,Unavailable
+SSO BX WC Maint,05506,BX WC - Westchester,Brogan,Martin,2020-08-06,X,Regular Day Off,2020-08-06 00:00:00,8,Unavailable
+SSO BX WC Maint,05506,BX WC - Westchester,Brogan,Martin,2020-08-07,X,Regular Day Off,2020-08-07 00:00:00,8,Unavailable
+SSO BX WC Maint,18753,BX WC - ASM,Hemmings,Charles,2020-08-05,T4,Training 4 Hrs.,2020-08-05 07:00:00,4,Unavailable
+SSO BX WC Maint,18753,BX WC - ASM,Hemmings,Charles,2020-08-05,A4,Available 4 Hrs.,2020-08-05 07:00:00,4,Standard
+SSO BX WC Maint,03844,BX WC - TRF,Alexander,Joseph,2020-08-07,NFW,No Field Work,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,04197,BX WC - TRF,Devlin,Jack,2020-08-07,NFW,No Field Work,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,03829,BX WC - ASM,Edwards,Douglas,2020-08-03,V,Vacation,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,03829,BX WC - ASM,Edwards,Douglas,2020-08-04,V,Vacation,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,88029,BX WC - Westchester,Tamburrino,Scott,2020-08-02,2,Shift 2: 7am-3:30pm,2020-08-02 07:00:00,8,Standard
+SSO BX WC Maint,88029,BX WC - Westchester,Tamburrino,Scott,2020-08-07,X,Regular Day Off,2020-08-07 00:00:00,8,Unavailable
+SSO BX WC Maint,82544,BX WC - Westchester,Szela,Joseph,2020-08-02,X,Regular Day Off,2020-08-02 00:00:00,8,Unavailable
+SSO BX WC Maint,82544,BX WC - Westchester,Szela,Joseph,2020-08-07,2,Shift 2: 7am-3:30pm,2020-08-07 07:00:00,8,Standard
+SSO BX WC Maint,86349,BX WC - Westchester,Occhicone,Nicholas,2020-08-03,V,Vacation,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,86349,BX WC - Westchester,Occhicone,Nicholas,2020-08-04,V,Vacation,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,86349,BX WC - Westchester,Occhicone,Nicholas,2020-08-05,V,Vacation,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,86349,BX WC - Westchester,Occhicone,Nicholas,2020-08-06,V,Vacation,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,86349,BX WC - Westchester,Occhicone,Nicholas,2020-08-07,V,Vacation,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,23574,BX WC - Westchester,Chiulli,Enzo,2020-08-06,MD,Medical Visit 8 Hrs,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,23579,BX WC - Westchester,Nappi,Andrew,2020-08-06,T2,Training 2 Hrs.,2020-08-06 07:00:00,2,Unavailable
+SSO BX WC Maint,23579,BX WC - Westchester,Nappi,Andrew,2020-08-06,A6,Available 6 Hrs.,2020-08-06 07:00:00,6,Standard
+SSO BX WC Maint,00318,BX WC - Westchester,Dio Dati,Derek,2020-08-04,T2,Training 2 Hrs.,2020-08-04 07:00:00,2,Unavailable
+SSO BX WC Maint,00318,BX WC - Westchester,Dio Dati,Derek,2020-08-04,A6,Available 6 Hrs.,2020-08-04 07:00:00,6,Standard
+SSO BX WC Maint,14171,BX WC - ASM,Muccio,Joseph,2020-08-03,2,Shift 2: 7am-3:30pm,2020-08-03 07:00:00,8,Standard
+SSO BX WC Maint,01831,BX WC - Westchester,Motto,Joseph,2020-08-03,V,Vacation,2020-08-03 07:00:00,8,Unavailable
+SSO BX WC Maint,01831,BX WC - Westchester,Motto,Joseph,2020-08-04,V,Vacation,2020-08-04 07:00:00,8,Unavailable
+SSO BX WC Maint,01831,BX WC - Westchester,Motto,Joseph,2020-08-05,V,Vacation,2020-08-05 07:00:00,8,Unavailable
+SSO BX WC Maint,01831,BX WC - Westchester,Motto,Joseph,2020-08-06,V,Vacation,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,01831,BX WC - Westchester,Motto,Joseph,2020-08-07,V,Vacation,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,04202,BX WC - TRF,Ferrotta,Luca,2020-08-06,V,Vacation,2020-08-06 07:00:00,8,Unavailable
+SSO BX WC Maint,04202,BX WC - TRF,Ferrotta,Luca,2020-08-07,V,Vacation,2020-08-07 07:00:00,8,Unavailable
+SSO BX WC Maint,08735,BX WC - Bronx,Marrero,Eric,2020-08-04,2,Shift 2: 7am-3:30pm,2020-08-04 07:00:00,8,Standard
