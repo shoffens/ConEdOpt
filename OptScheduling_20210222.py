@@ -23,18 +23,18 @@ import os
 from collections import defaultdict
 from collections import Counter
 
-dfall=None
-dfcopy=None
-dfJ = None
-HJ=None
-lowerj=None
-jinJ=None
-hhours=None
-removedrow=None
-var_vals = None
-Mx = None
-scheduledJ = None
-scheduledj = None
+# dfall=None
+# dfcopy=None
+# dfJ = None
+# HJ=None
+# lowerj=None
+# jinJ=None
+# hhours=None
+# removedrow=None
+# var_vals = None
+# Mx = None
+# scheduledJ = None
+# scheduledj = None
 
 #Use this to get the execution time
 start_time = time.time()
@@ -50,7 +50,7 @@ dfweek = pd.read_csv("input_parameters.csv",encoding = 'unicode_escape')
 #Matrix of employees and profienicies (1-5 skill level)
 proficiency = pd.read_csv("input_employee_info.csv",converters={'EMPLOYEE_ID': lambda x: str(x)})
 #Read 2020 dates
-dfn = pd.read_csv("2020cal.csv",encoding = 'unicode_escape')
+dfn = pd.read_csv("2021cal.csv",encoding = 'unicode_escape')
 #On this file task names are associated with a task key
 taskkey = pd.read_csv("input_proficiency_master.csv")
 
@@ -379,6 +379,7 @@ def dailyoptimization():
 #%%*********** Get hours, crew size columns before grouping ****************
     #hhours is the hour of pre-grouping jobs #post-split jobs
     hhours = list(dfall.HOURS)
+    hhours = [ int(x) for x in hhours ]
     ccrewz = list(dfall.CREW_SIZE)
     #Priority of the pre-combined jobs
     priority = list(dfall.PRIORITY)
@@ -448,7 +449,7 @@ def dailyoptimization():
     # Hours of the pre-split jobs
     hours_float = list(dfJ.HOURS)
     #Call int() function on every list element
-    HJ = [ int(x) for x in hours_float ]
+    HJ = [ int(float(x)) for x in hours_float ]
     
     #Priority of the pre-combined jobs
     pJ = list(dfJ.PRIORITY)
