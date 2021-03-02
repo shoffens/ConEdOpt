@@ -1,3 +1,16 @@
+-No problem with df[:1231] (<60 sec)
+-df[:1233] 81 sec
+-([df[:1230],df[1250:1718],df[1719:]]) took 177 sec total!!!
+-([df[:1231],df[1234:1715],df[1718:]]) took 657 sec total
+-([df[:1233],df[1234:1715],df[1718:]]) took 895 sec total
+
+-([df[:1231],df[1233:1715],df[1718:]]) took over an hour! 3737 sec
+-([df[:1231],df[1240:1716],df[1718:]]) took a while to converge day 3, failed on day 3/4 ('0016702758' is not in list)
+-Long runtime problem with df[:1237] (Wed fail)
+-Crazy-long runtime problems with df[:1500], df[1000:]
+-No solution exists for [1717:] (Wed fail)
+-Solution exists but not much there for [1718:]
+
 Notes:
 -Main code starts at "User input :" comment (row 1882)
 -Runtime original, just some minor code cleanup: 75 min
@@ -57,6 +70,7 @@ Questions:
 Things to do:
 -Make sure dropped P4-P6 jobs are not in same WONUM as kept jobs
 -Add 2021 date capabilities to twenty_bss_dates, bzzhours, year2020dates
+-Add filters on 
 
 Things to check:
 -what does this line do? workingc = list(dict.fromkeys(workingc))

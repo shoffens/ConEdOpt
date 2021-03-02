@@ -59,7 +59,7 @@ if os.path.isfile('dailyoutputcsv.csv'):
     os.remove('dailyoutputcsv.csv')
 
 #%% Remove lower-priority, 8-hour jobs that well exceed 2x the scheduling capacity
-bufferfactor = 2            # Can make this 3x or something else
+bufferfactor = 3            # Can make this 3x or something else
 df_original = df
 
 # Delete rows with hours or crewz = 0:
@@ -68,6 +68,10 @@ df = df[df.HOURS != 0]
 
 # Remove all jobs that are not E-Plan status = READY or Maximo status = APPR or REWORK
 # df = df[(df.EPLAN_STATUS == 'READY') & (df.MAXIMO_STATUS == 'APPR')]
+
+# Remove problematic jobs (found by trial and error)
+df_orig2 = pd.concat([df[:1230],df[1250:1718],df[1719:]])
+df = df_orig2
 
 # Remove priority-4 jobs that are not due in the next three weeks:
 duedates = pd.to_datetime(df.DUE_DATE)
