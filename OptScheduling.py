@@ -50,7 +50,7 @@ dfweek = pd.read_csv("input_parameters.csv",encoding = 'unicode_escape')
 #Matrix of employees and profienicies (1-5 skill level)
 proficiency = pd.read_csv("input_employee_info.csv",converters={'EMPLOYEE_ID': lambda x: str(x)})
 #Read 2020 dates
-dfn = pd.read_csv("2021cal.csv",encoding = 'unicode_escape')
+# dfn = pd.read_csv("2021cal.csv",encoding = 'unicode_escape')
 #On this file task names are associated with a task key
 taskkey = pd.read_csv("input_proficiency_master.csv")
 
@@ -58,8 +58,19 @@ taskkey = pd.read_csv("input_proficiency_master.csv")
 if os.path.isfile('dailyoutputcsv.csv'):
     os.remove('dailyoutputcsv.csv')
 
+#%% NEW approach to calendar information:
+dayrange = 28       # Number of days into the future to consider
+sundate = list(dfweek.Value)
+calendar = [pd.to_datetime(sundate) + datetime.timedelta(days=x) for x in range(dayrange)]
+
+# Create list of weekdays/workdays:
+workdaycal = []
+for i in range(dayrange):
+    if (calendar[i].strftime("%A")[0] != 'Sunday') & (calendar[i].strftime("%A")[0] != 'Saturday'):
+        workdaycal.append(calendar[i].strftime("%Y-%m-%d")[0])
+        
 #%% Remove lower-priority, 8-hour jobs that well exceed 2x the scheduling capacity
-bufferfactor = 3            # Can make this 3x or something else
+bufferfactor = 5           # Can make this 3x or something else
 df_original = df
 
 # Delete rows with hours or crewz = 0:
@@ -70,8 +81,9 @@ df = df[df.HOURS != 0]
 # df = df[(df.EPLAN_STATUS == 'READY') & (df.MAXIMO_STATUS == 'APPR')]
 
 # Remove problematic jobs (found by trial and error)
-df_orig2 = pd.concat([df[:1230],df[1250:1718],df[1719:]])
-df = df_orig2
+# df_orig2 = pd.concat([df[:1230],df[1250:1718],df[1719:]])
+# df_orig2 = pd.concat([df[:1718],df[1719:]])
+# df = df_orig2
 
 # Remove priority-4 jobs that are not due in the next three weeks:
 duedates = pd.to_datetime(df.DUE_DATE)
@@ -84,7 +96,16 @@ endfixeddate = pd.to_datetime(startdate) + pd.DateOffset(days=7)
 pre_fixedjobs = df[df.fixeddates <= endfixeddate]
 df = pd.concat([df[(df.PRIORITY != 4)], df[(df.duedates <= enddate) & (df.duedates >= startdate)]])
 
-# Now, remove the priority-5 and priority-6 jobs:
+# Remove OUTAGE jobs that are not fixed to occur this week:
+df_o = df[df.OUTAGE_REQUIRED == True]   # Identify outage-required jobs
+df_os = pd.DataFrame(columns = df.columns)
+for i in range(5):
+    fdate = workdaycal[i]
+    df_os = df_os.append(df_o[df_o.FIXED_DATE == fdate])  # Identify those that are scheduled this week
+df_keep = pd.concat([df[df.OUTAGE_REQUIRED != True],df_os])
+df = df_keep
+
+# Now, remove the priority-5 and priority-6 jobs and add them back:
 df_6 = df[(df.PRIORITY == 6) & (df.HOURS == 8)]
 df_not6 = pd.concat([df[df.PRIORITY !=6], df[(df.PRIORITY == 6) & (df.HOURS != 8)]])
 df_5 = df[(df.PRIORITY == 5) & (df.HOURS == 8)]
@@ -193,33 +214,49 @@ dfcalw.SCHEDULE_DATE=pd.to_datetime(dfcalw.SCHEDULE_DATE)
 #Remove weekends from resource calendar test
 res_cal_dates = dfcalw['SCHEDULE_DATE'].to_list()
 
-#%% ############## Preprocessing calendar information ##############
-# convert datetime into pandas
-dfn.date=pd.to_datetime(dfn.date)
-day_exclusion = ['Saturday', 'Sunday']
-# Remove weekends 
-dfnoss=dfn[~(pd.to_datetime(dfn['date']).dt.day_name().isin(day_exclusion))]
-#reset index
-dfnoss.reset_index(drop=True, inplace=True)
+#%% ############## Preprocessing calendar information (OBSOLETE) ##############
+# # convert datetime into pandas
+# dfn.date=pd.to_datetime(dfn.date)
+# day_exclusion = ['Saturday', 'Sunday']
+# # Remove weekends 
+# dfnoss=dfn[~(pd.to_datetime(dfn['date']).dt.day_name().isin(day_exclusion))]
+# #reset index
+# dfnoss.reset_index(drop=True, inplace=True)
 
-#Start of the week (Sunday)
-sundate = list(dfweek.Value)
-#Add a column to the dataframe to do some operations on the date
-dfweek["weeksun"] = sundate
-#convert string to datetime
-dfweek["weeksun"] = pd.to_datetime(dfweek["weeksun"], dayfirst = True)
+# #Start of the week (Sunday)
+# sundate = list(dfweek.Value)
+# #Add a column to the dataframe to do some operations on the date
+# dfweek["weeksun"] = sundate
+# #convert string to datetime
+# dfweek["weeksun"] = pd.to_datetime(dfweek["weeksun"], dayfirst = True)
     
-#Create a list from the 2020 dates -the year 2020 business days
-twenty_bss_dates = dfn['date'].to_list()
-#Convert the timestamp object to dataframe
-for i in range(len(twenty_bss_dates)):
-    if str(twenty_bss_dates[i]) != 'NaT':
-        twenty_bss_dates[i] = twenty_bss_dates[i].strftime('%Y-%m-%d')
+# #Create a list from the 2020 dates -the year 2020 business days
+# twenty_bss_dates = dfn['date'].to_list()
+# #Convert the timestamp object to dataframe
+# for i in range(len(twenty_bss_dates)):
+#     if str(twenty_bss_dates[i]) != 'NaT':
+#         twenty_bss_dates[i] = twenty_bss_dates[i].strftime('%Y-%m-%d')
         
+# for i in range(len(res_cal_dates)):
+#     if str(res_cal_dates[i]) != 'NaT':
+#         res_cal_dates[i] = res_cal_dates[i].strftime('%Y-%m-%d')
+
+#%% NEW approach to calendar information:
+dayrange = 28       # Number of days into the future to consider
+sundate = list(dfweek.Value)
+calendar = [pd.to_datetime(sundate) + datetime.timedelta(days=x) for x in range(dayrange)]
+
+# Create list of weekdays/workdays:
+workdaycal = []
+for i in range(dayrange):
+    if (calendar[i].strftime("%A")[0] != 'Sunday') & (calendar[i].strftime("%A")[0] != 'Saturday'):
+        workdaycal.append(calendar[i].strftime("%Y-%m-%d")[0])
+
+# Create list of dates on resource calendar (worker availability):        
 for i in range(len(res_cal_dates)):
     if str(res_cal_dates[i]) != 'NaT':
         res_cal_dates[i] = res_cal_dates[i].strftime('%Y-%m-%d')
-              
+
 #%%**************** number of workers and number of hours **************
 numw = len(worker_ID_5dig_Uq)  
 numt = 8 
@@ -279,57 +316,83 @@ def dailyoptimization():
     # The number of days between the date on the Due Date column of the csv file and the target_week date specified as 1/1/2019
     dfall["DUEDUE"] = (dfall["DUE"] - target_weekZ).dt.days
     
-#%% ########### IDENTIFY DATES OF THE WEEK ###############         
-            
-    firstddate_sun = dfweek["weeksun"].to_list()
-    for i in range(len(firstddate_sun)):
-        if str(firstddate_sun[i]) != 'NaT':
-            firstddate_sun[i] = firstddate_sun[i].strftime('%Y-%m-%d')
-            
-    # delweekendsIDX = []
-    #Find indices of elements in one list that are not in the other list
-    weekendsrows=[i for i, item in enumerate(res_cal_dates) if item not in twenty_bss_dates]
-    
+#%% ########### Identify dates of the week (NEW) ########### 
+    # Identify weekend rows of resource calendar
+    weekendrows=[i for i, item in enumerate(res_cal_dates) if item not in workdaycal]
     #Delete weekeds from resource calendar dataframe
-    dfcalw_bss = dfcalw.drop(dfcalw.index[weekendsrows])
+    dfcalw_bss = dfcalw.drop(dfcalw.index[weekendrows])
     #reset index and save it as a column
     dfcalw_bss.reset_index(drop=True, inplace=True)
-    
-    #Add a "working hours" column starting from hour 1 on 7/6/2020 to the datfatcalw_bss
-    bzzhours = []
+
+    # Create an index of business day working hours:       
+    bushours = []
     for i in res_cal_dates:
-        if i in twenty_bss_dates:
-            bzzhours.append(twenty_bss_dates.index(i) + 1)
+        if i in workdaycal:
+            bushours.append(workdaycal.index(i) + 1)
+            
+    #daynumber = [item for item in bushours]
+    dfcalw_bss["dayN"] = bushours
+    daydate = workdaycal[day - 1]
     
-    #Find the first week start date (Sunday) in the 2020 cal
-    year2020dates = dfn['date'].to_list()
-    #Convert the timestamp object to dataframe
-    for i in range(len(year2020dates)):
-        year2020dates[i] = year2020dates[i].strftime('%Y-%m-%d')
-    first_sun_index = year2020dates.index(firstddate_sun[0])
-    #The date of the first Monday of the week to be planned 
-    firstMondate = year2020dates[first_sun_index+1]
-    daydate = year2020dates[first_sun_index+day]
-    firstMon = twenty_bss_dates.index(firstMondate) + 1
-    
-    dfcalw_bss["dayoftheyear"]=bzzhours
-    
-    #Add a new column dayno - assume the first working day of the week we are planning for = day 1!!
-    dayno = dfcalw_bss['dayoftheyear'].to_list()
-    #Find the first Monday of the week we are planning for is which day of the year 2020
-    firstMon = firstMon - 1
-    #val - firstMon 
-    daynumber = [item - firstMon for item in dayno]
-    dfcalw_bss["dayN"] = daynumber
-    #Column hours shows how many hours the person works
-    
+    ##### NOT SURE IF THE NEXT FEW LINES ARE REALLY NEEDED:
     #Copy the dataframe
     newdfcalw_bss = dfcalw_bss.copy()
     #Repeat each row 8 times (8 hours per day)
-    #repts = [val for val in 9]
     newdfcalw_bss = newdfcalw_bss.loc[np.repeat(newdfcalw_bss.index.values, 8)]
     #reset index
     newdfcalw_bss.reset_index(drop=True, inplace=True)
+    
+#%% ########### IDENTIFY DATES OF THE WEEK (OBSOLETE) ###############         
+            
+    # firstddate_sun = dfweek["weeksun"].to_list()
+    # for i in range(len(firstddate_sun)):
+    #     if str(firstddate_sun[i]) != 'NaT':
+    #         firstddate_sun[i] = firstddate_sun[i].strftime('%Y-%m-%d')
+            
+    # # delweekendsIDX = []
+    # #Find indices of elements in one list that are not in the other list
+    # weekendsrows=[i for i, item in enumerate(res_cal_dates) if item not in twenty_bss_dates]
+
+    # #Delete weekeds from resource calendar dataframe
+    # dfcalw_bss = dfcalw.drop(dfcalw.index[weekendsrows])
+    # #reset index and save it as a column
+    # dfcalw_bss.reset_index(drop=True, inplace=True)
+    
+    # #Add a "working hours" column starting from hour 1 on 7/6/2020 to the datfatcalw_bss
+    # bzzhours = []
+    # for i in res_cal_dates:
+    #     if i in twenty_bss_dates:
+    #         bzzhours.append(twenty_bss_dates.index(i) + 1)
+    
+    # #Find the first week start date (Sunday) in the 2020 cal
+    # year2020dates = dfn['date'].to_list()
+    # #Convert the timestamp object to dataframe
+    # for i in range(len(year2020dates)):
+    #     year2020dates[i] = year2020dates[i].strftime('%Y-%m-%d')
+    # first_sun_index = year2020dates.index(firstddate_sun[0])
+    # #The date of the first Monday of the week to be planned 
+    # firstMondate = year2020dates[first_sun_index+1]
+    # daydate = year2020dates[first_sun_index+day]
+    # firstMon = twenty_bss_dates.index(firstMondate) + 1
+    
+    # dfcalw_bss["dayoftheyear"]=bzzhours
+    
+    # #Add a new column dayno - assume the first working day of the week we are planning for = day 1!!
+    # dayno = dfcalw_bss['dayoftheyear'].to_list()
+    # #Find the first Monday of the week we are planning for is which day of the year 2020
+    # firstMon = firstMon - 1
+    # #val - firstMon 
+    # daynumber = [item - firstMon for item in dayno]
+    # dfcalw_bss["dayN"] = daynumber
+    # #Column hours shows how many hours the person works
+    
+    # #Copy the dataframe
+    # newdfcalw_bss = dfcalw_bss.copy()
+    # #Repeat each row 8 times (8 hours per day)
+    # #repts = [val for val in 9]
+    # newdfcalw_bss = newdfcalw_bss.loc[np.repeat(newdfcalw_bss.index.values, 8)]
+    # #reset index
+    # newdfcalw_bss.reset_index(drop=True, inplace=True)
     
 #%%#################Preprocess jobs based on outage requirement###################################
     # Outage dates
