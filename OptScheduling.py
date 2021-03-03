@@ -81,9 +81,7 @@ df = df[df.HOURS != 0]
 # df = df[(df.EPLAN_STATUS == 'READY') & (df.MAXIMO_STATUS == 'APPR')]
 
 # Remove problematic jobs (found by trial and error)
-# df_orig2 = pd.concat([df[:1230],df[1250:1718],df[1719:]])
-# df_orig2 = pd.concat([df[:1718],df[1719:]])
-# df = df_orig2
+# df = pd.concat([df[:1718],df[1719:]])
 
 # Remove priority-4 jobs that are not due in the next three weeks:
 duedates = pd.to_datetime(df.DUE_DATE)
@@ -98,12 +96,11 @@ df = pd.concat([df[(df.PRIORITY != 4)], df[(df.duedates <= enddate) & (df.duedat
 
 # Remove OUTAGE jobs that are not fixed to occur this week:
 df_o = df[df.OUTAGE_REQUIRED == True]   # Identify outage-required jobs
-df_os = pd.DataFrame(columns = df.columns)
+df_os = pd.DataFrame(columns = df.columns)  # Create df of outage-required jobs with fixed dates
 for i in range(5):
     fdate = workdaycal[i]
     df_os = df_os.append(df_o[df_o.FIXED_DATE == fdate])  # Identify those that are scheduled this week
-df_keep = pd.concat([df[df.OUTAGE_REQUIRED != True],df_os])
-df = df_keep
+df = pd.concat([df[df.OUTAGE_REQUIRED != True],df_os])
 
 # Now, remove the priority-5 and priority-6 jobs and add them back:
 df_6 = df[(df.PRIORITY == 6) & (df.HOURS == 8)]
@@ -124,15 +121,15 @@ if totalhours > totalwhours*bufferfactor:                  # If backlog has more
         df_5add = df_5[:math.ceil(hourstoaddback*len(df_5))]
         df = pd.concat([df_not56,df_5add])
         
-    # Now, let's check and see if any fixeddates jobs were removed:
-    reduced_fixedjobs = df[df.fixeddates <= endfixeddate]
-    if len(pre_fixedjobs) > len(reduced_fixedjobs):
-        listreduced = list(reduced_fixedjobs.index)
-        listtoaddback = pd.DataFrame(columns = df.columns)
-        for i in pre_fixedjobs.index:
-            if i not in listreduced:
-                listtoaddback = listtoaddback.append(pre_fixedjobs[pre_fixedjobs.index == i])
-        df = pd.concat([df,listtoaddback])     
+# Now, let's check and see if any fixeddates jobs were removed:
+reduced_fixedjobs = df[df.fixeddates <= endfixeddate]
+if len(pre_fixedjobs) > len(reduced_fixedjobs):
+    listreduced = list(reduced_fixedjobs.index)
+    listtoaddback = pd.DataFrame(columns = df.columns)
+    for i in pre_fixedjobs.index:
+        if i not in listreduced:
+            listtoaddback = listtoaddback.append(pre_fixedjobs[pre_fixedjobs.index == i])
+    df = pd.concat([df,listtoaddback])     
         
 # Renumber the indices in the dataframe df        
 df = df.reset_index(drop=True)
@@ -242,15 +239,16 @@ res_cal_dates = dfcalw['SCHEDULE_DATE'].to_list()
 #         res_cal_dates[i] = res_cal_dates[i].strftime('%Y-%m-%d')
 
 #%% NEW approach to calendar information:
-dayrange = 28       # Number of days into the future to consider
-sundate = list(dfweek.Value)
-calendar = [pd.to_datetime(sundate) + datetime.timedelta(days=x) for x in range(dayrange)]
+# # This part was moved up so it could be used in the filtering steps:
+# dayrange = 28       # Number of days into the future to consider
+# sundate = list(dfweek.Value)
+# calendar = [pd.to_datetime(sundate) + datetime.timedelta(days=x) for x in range(dayrange)]
 
-# Create list of weekdays/workdays:
-workdaycal = []
-for i in range(dayrange):
-    if (calendar[i].strftime("%A")[0] != 'Sunday') & (calendar[i].strftime("%A")[0] != 'Saturday'):
-        workdaycal.append(calendar[i].strftime("%Y-%m-%d")[0])
+# # Create list of weekdays/workdays:
+# workdaycal = []
+# for i in range(dayrange):
+#     if (calendar[i].strftime("%A")[0] != 'Sunday') & (calendar[i].strftime("%A")[0] != 'Saturday'):
+#         workdaycal.append(calendar[i].strftime("%Y-%m-%d")[0])
 
 # Create list of dates on resource calendar (worker availability):        
 for i in range(len(res_cal_dates)):
