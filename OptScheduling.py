@@ -23,23 +23,193 @@ import os
 from collections import defaultdict
 from collections import Counter
 
-dfall=None
-dfcopy=None
-dfJ = None
-HJ=None
-lowerj=None
-jinJ=None
-hhours=None
-removedrow=None
-var_vals = None
-Mx = None
-scheduledJ = None
-scheduledj = None
-
 #Use this to get the execution time
 start_time = time.time()
 
-#%%
+#%% ****************** Read in CSV files ***********************************
+
+# Read the csv file and save it as a data framenamed "df" ; "converters" helps to keep leading zeros when opening a csv file using Pandas
+df = pd.read_csv("input_work_orders.csv",encoding = 'unicode_escape',converters={'WONUM': lambda x: str(x)})    
+#Read worker schedule_calendar ; "converters" helps to keep leading zeros when opening a csv file using Pandas
+dfcal = pd.read_csv("input_employee_schedule.csv",encoding = 'unicode_escape', converters={'EMPLOYEE_ID': lambda x: str(x)})
+#Read the data which shows which week we are planning for - It has one value - the date of Sunday
+dfweek = pd.read_csv("input_parameters.csv",encoding = 'unicode_escape')
+#Matrix of employees and profienicies (1-5 skill level)
+proficiency = pd.read_csv("input_employee_info.csv",converters={'EMPLOYEE_ID': lambda x: str(x)})
+#On this file task names are associated with a task key
+taskkey = pd.read_csv("input_proficiency_master.csv")
+
+# Delete daily .csv files (otherwise they will keep appending):
+if os.path.isfile('dailyoutputcsv.csv'):
+    os.remove('dailyoutputcsv.csv')
+
+#%% NEW approach to calendar information:
+dayrange = 28       # Number of days into the future to consider
+sundate = list(dfweek.Value)
+calendar = [pd.to_datetime(sundate) + datetime.timedelta(days=x) for x in range(dayrange)]
+
+# Create list of weekdays/workdays:
+workdaycal = []
+for i in range(dayrange):
+    if (calendar[i].strftime("%A")[0] != 'Sunday') & (calendar[i].strftime("%A")[0] != 'Saturday'):
+        workdaycal.append(calendar[i].strftime("%Y-%m-%d")[0])
+        
+#%% Remove lower-priority, 8-hour jobs that well exceed 2x the scheduling capacity
+bufferfactor = 5           # Can make this 3x or something else
+df_original = df
+
+# Delete rows with hours or crewz = 0:
+df = df[df.CREW_SIZE != 0]
+df = df[df.HOURS != 0]
+
+# Remove all jobs that are not E-Plan status = READY or Maximo status = APPR or REWORK
+# df = df[(df.EPLAN_STATUS == 'READY') & (df.MAXIMO_STATUS == 'APPR')]
+
+# Remove problematic jobs (found by trial and error)
+# df = pd.concat([df[:1718],df[1719:]])
+
+# Remove priority-4 jobs that are not due in the next three weeks:
+duedates = pd.to_datetime(df.DUE_DATE)
+fixeddates = pd.to_datetime(df.FIXED_DATE)
+df.insert(10,'duedates',duedates)
+df.insert(11,'fixeddates',fixeddates)
+startdate = dfweek.Value[0]
+mondate = pd.to_datetime(startdate) + pd.DateOffset(days=1)
+enddate = pd.to_datetime(startdate) + pd.DateOffset(days=21)
+endfixeddate = pd.to_datetime(startdate) + pd.DateOffset(days=5)
+pre_fixedjobs = df[(df.fixeddates <= endfixeddate) & (df.fixeddates >= pd.to_datetime(mondate))]
+df = pd.concat([df[(df.PRIORITY != 4)], df[(df.duedates <= enddate) & (df.duedates >= mondate)]])
+
+# Remove OUTAGE jobs that are not fixed to occur this week:
+df_o = df[df.OUTAGE_REQUIRED == True]   # Identify outage-required jobs
+df_os = pd.DataFrame(columns = df.columns)  # Create df of outage-required jobs with fixed dates
+for i in range(5):
+    fdate = workdaycal[i]
+    df_os = df_os.append(df_o[df_o.FIXED_DATE == fdate])  # Identify those that are scheduled this week
+df = pd.concat([df[df.OUTAGE_REQUIRED != True],df_os])
+
+# Now, remove the priority-5 and priority-6 jobs and add them back:
+df_6 = df[(df.PRIORITY == 6) & (df.HOURS == 8)]
+df_not6 = pd.concat([df[df.PRIORITY !=6], df[(df.PRIORITY == 6) & (df.HOURS != 8)]])
+df_5 = df[(df.PRIORITY == 5) & (df.HOURS == 8)]
+df_not56 = pd.concat([df_not6[df_not6.PRIORITY !=5], df_not6[(df_not6.PRIORITY == 5) & (df_not6.HOURS != 8)]])
+totalwhours = 40*len(proficiency)               # Number of worker-hours potentially available
+totalhours = df['PLAN_HOURS'].sum()               # Number of hours in original schedule
+totalhours_excl6 = df_not6['PLAN_HOURS'].sum()
+totalhours_excl56 = df_not56['PLAN_HOURS'].sum()  # Number of hours if all 5's removed
+if totalhours > totalwhours*bufferfactor:                  # If backlog has more than 3x available worker hours...
+    if totalhours_excl6 >= totalwhours*bufferfactor:        # If backlog after removing 6's is still too big...
+        df = df_not6
+    if totalhours_excl56 >= totalwhours*bufferfactor:        # If backlog after removing 5's still does...
+        df = df_not56
+    else:                                       # Find percentage of P5 jobs to return
+        hourstoaddback = (totalwhours*bufferfactor - totalhours_excl56)/(totalhours - totalhours_excl56)
+        df_5add = df_5[:math.ceil(hourstoaddback*len(df_5))]
+        df = pd.concat([df_not56,df_5add])
+        
+# Now, let's check and see if any fixeddates jobs were removed:
+reduced_fixedjobs = df[df.fixeddates <= endfixeddate]
+if len(pre_fixedjobs) > len(reduced_fixedjobs):
+    listreduced = list(reduced_fixedjobs.index)
+    listtoaddback = pd.DataFrame(columns = df.columns)
+    for i in pre_fixedjobs.index:
+        if i not in listreduced:
+            listtoaddback = listtoaddback.append(pre_fixedjobs[pre_fixedjobs.index == i])
+    df = pd.concat([df,listtoaddback])     
+        
+# Renumber the indices in the dataframe df        
+df = df.reset_index(drop=True)
+    
+#%%############################ PREPROCESSING INPUT FILES ###############################################################
+#In these cases, we want to optimize the job into the schedule (most likely we are going to predetermine the date to work as this circumstance is usually outage related) as if the job is only planned for 8 hours/day.
+##### Set 8+ hour/day jobs to 8 hours:
+df.loc[df['HOURS'] > 8 , 'HOURS'] = 8
+
+# In the "input_employee_info.csv" file received on July 30, worker ID's do not have leading zeros.
+# Add leading zeros to make ID's read from here and the resource calendar consistent
+for i in range(2,len(proficiency.index)):
+    #Add leading zeros to have 5 digits (operator: dot z fill (5))
+    if len(proficiency["EMPLOYEE_ID"][i]) < 5: #normally ID's are 5 digits
+        proficiency["EMPLOYEE_ID"][i] = proficiency["EMPLOYEE_ID"][i].zfill(5)
+#Empty cells in the proficiency file are replaced with level '1'.
+proficiency = proficiency.fillna('1')
+dfcopy=df.copy()
+#Add a column to the dataframe to keep track of workers of multishift jobs
+dfcopy['wtocont'] = [[] for _ in range(dfcopy.shape[0])]
+
+################## Find unique work order numbers for J ############################
+jobnum = list(df.WONUM)
+jobnum_uq = []
+for i in jobnum:
+    if i not in jobnum_uq:
+        jobnum_uq.append(i) 
+numJ = len(jobnum_uq) 
+#%% This may be obsolete since Endevor started pre-splitting jobs? ####
+# # Create a dictionary to associate a job number (J; starting from 0) to every unique WONUM
+# presplitJ = list(range(len(jobnum_uq)))
+# #keys = jobnum_uq
+# #values = J = 0, ..., len(jobnum_uq) - 1
+# jobdict_J_WONUM = {jobnum_uq[i]: presplitJ[i] for i in range(len(jobnum_uq))}
+# profecy_colnames = list(proficiency.columns)
+#%% ########################## Process worker data #####################################
+# dfcal: worker schedule csv read as a dataframe
+# save EMPLOYEE_ID column from employee schedule as a list
+worker_ID_5dig = dfcal['EMPLOYEE_ID'].tolist()     
+# remove duplicates in the employee id list (each worker comes in more than one row)
+worker_ID_5dig_Uq = []
+for i in worker_ID_5dig:
+    if i not in worker_ID_5dig_Uq:
+        worker_ID_5dig_Uq.append(i) 
+#Associate range(numw) with worker ID’s
+#Bronx employee numbers start from 0 to len(WoID_5dig_Uq)
+worker_no=list(range(len(worker_ID_5dig_Uq))) #0 ... 9
+#Convert employee number and employee id lists into a dictionary using dictionary comprehension
+# initializing lists
+#keys = worker_ID_5dig_Uq
+#values = worker_no = 0, ..., 9
+#Use dictionary comprehension to convert lists to dictionary
+dictworker_id_no = {worker_ID_5dig_Uq[i]: worker_no[i] for i in range(len(worker_ID_5dig_Uq))}
+#Create a list from proficiency file employee_id
+#Add workernumber column to proficiency dataframe
+worker_ID_temp = proficiency['EMPLOYEE_ID'].tolist()  
+tempwno = []
+#worker number is an integer starting from 0 that is added as a new column to the dataframe
+for i in range(len(worker_ID_temp)):
+    if len(worker_ID_temp[i]) == 0: #empty
+        tempwno.append("")
+    else:
+        tempwno.append(dictworker_id_no[worker_ID_temp[i]]) 
+proficiency = proficiency.assign(workernumber = tempwno) 
+
+#Add workernumber column to input_employee_schedule/Bronx
+tempwnosch = []
+for i in range(len(worker_ID_5dig)):
+    tempwnosch.append(dictworker_id_no[worker_ID_5dig[i]]) 
+dfcal = dfcal.assign(workernumber = tempwnosch) 
+
+#%% ######################### worker availability preprocessing ################# dataframe:newdfcalw_bss ####################
+#Filter the dataframe to "Shift 2: 7am-3:30pm" only
+#Save the date of work days in the 2020 calendar as a list
+dfcalw = dfcal.loc[dfcal['SHIFT_DESC'] == "Shift 2: 7am-3:30pm"]  #Bronx
+dfcalw.reset_index(drop=True, inplace=True)
+## convert your datetime into pandas
+dfcalw.SCHEDULE_DATE=pd.to_datetime(dfcalw.SCHEDULE_DATE)
+#Remove weekends from resource calendar test
+res_cal_dates = dfcalw['SCHEDULE_DATE'].to_list()
+
+# Create list of dates on resource calendar (worker availability):        
+for i in range(len(res_cal_dates)):
+    if str(res_cal_dates[i]) != 'NaT':
+        res_cal_dates[i] = res_cal_dates[i].strftime('%Y-%m-%d')
+
+#%%**************** number of workers and number of hours **************
+numw = len(worker_ID_5dig_Uq)  
+numt = 8 
+# At a maximum, how many seconds do you want the code that creates the daily schedule takes to run?
+runtime = 3600 #1 hours
+day = 1
+
+#%% Daily optimization loop
 def dailyoptimization():
     global dfall    # Database of jobs. Unclear how different from df
     global dfcopy   # Same as dfall. Unclear why it exists
@@ -91,54 +261,28 @@ def dailyoptimization():
     # The number of days between the date on the Due Date column of the csv file and the target_week date specified as 1/1/2019
     dfall["DUEDUE"] = (dfall["DUE"] - target_weekZ).dt.days
     
-#%% ########### IDENTIFY DATES OF THE WEEK ###############         
-            
-    firstddate_sun = dfweek["weeksun"].to_list()
-    for i in range(len(firstddate_sun)):
-        if str(firstddate_sun[i]) != 'NaT':
-            firstddate_sun[i] = firstddate_sun[i].strftime('%Y-%m-%d')
-            
-    # delweekendsIDX = []
-    #Find indices of elements in one list that are not in the other list
-    weekendsrows=[i for i, item in enumerate(res_cal_dates) if item not in twenty_bss_dates]
-    
+#%% ########### Identify dates of the week (NEW) ########### 
+    # Identify weekend rows of resource calendar
+    weekendrows=[i for i, item in enumerate(res_cal_dates) if item not in workdaycal]
     #Delete weekeds from resource calendar dataframe
-    dfcalw_bss = dfcalw.drop(dfcalw.index[weekendsrows])
+    dfcalw_bss = dfcalw.drop(dfcalw.index[weekendrows])
     #reset index and save it as a column
     dfcalw_bss.reset_index(drop=True, inplace=True)
-    
-    #Add a "working hours" column starting from hour 1 on 7/6/2020 to the datfatcalw_bss
-    bzzhours = []
+
+    # Create an index of business day working hours:       
+    bushours = []
     for i in res_cal_dates:
-        if i in twenty_bss_dates:
-            bzzhours.append(twenty_bss_dates.index(i) + 1)
+        if i in workdaycal:
+            bushours.append(workdaycal.index(i) + 1)
+            
+    #daynumber = [item for item in bushours]
+    dfcalw_bss["dayN"] = bushours
+    daydate = workdaycal[day - 1]
     
-    #Find the first week start date (Sunday) in the 2020 cal
-    year2020dates = dfn['date'].to_list()
-    #Convert the timestamp object to dataframe
-    for i in range(len(year2020dates)):
-        year2020dates[i] = year2020dates[i].strftime('%Y-%m-%d')
-    first_sun_index = year2020dates.index(firstddate_sun[0])
-    #The date of the first Monday of the week to be planned 
-    firstMondate = year2020dates[first_sun_index+1]
-    daydate = year2020dates[first_sun_index+day]
-    firstMon = twenty_bss_dates.index(firstMondate) + 1
-    
-    dfcalw_bss["dayoftheyear"]=bzzhours
-    
-    #Add a new column dayno - assume the first working day of the week we are planning for = day 1!!
-    dayno = dfcalw_bss['dayoftheyear'].to_list()
-    #Find the first Monday of the week we are planning for is which day of the year 2020
-    firstMon = firstMon - 1
-    #val - firstMon 
-    daynumber = [item - firstMon for item in dayno]
-    dfcalw_bss["dayN"] = daynumber
-    #Column hours shows how many hours the person works
-    
+    ##### NOT SURE IF THE NEXT FEW LINES ARE REALLY NEEDED:
     #Copy the dataframe
     newdfcalw_bss = dfcalw_bss.copy()
     #Repeat each row 8 times (8 hours per day)
-    #repts = [val for val in 9]
     newdfcalw_bss = newdfcalw_bss.loc[np.repeat(newdfcalw_bss.index.values, 8)]
     #reset index
     newdfcalw_bss.reset_index(drop=True, inplace=True)
@@ -195,6 +339,7 @@ def dailyoptimization():
 #%%*********** Get hours, crew size columns before grouping ****************
     #hhours is the hour of pre-grouping jobs #post-split jobs
     hhours = list(dfall.HOURS)
+    hhours = [ int(x) for x in hhours ]
     ccrewz = list(dfall.CREW_SIZE)
     #Priority of the pre-combined jobs
     priority = list(dfall.PRIORITY)
@@ -264,7 +409,7 @@ def dailyoptimization():
     # Hours of the pre-split jobs
     hours_float = list(dfJ.HOURS)
     #Call int() function on every list element
-    HJ = [ int(x) for x in hours_float ]
+    HJ = [ int(float(x)) for x in hours_float ]
     
     #Priority of the pre-combined jobs
     pJ = list(dfJ.PRIORITY)
@@ -1591,183 +1736,7 @@ def dailyoptimization():
         plandaytocsv = []
         
     return optaj, opty, optx, optdelta;
-#%% Beginning of code (pre-processing and outer loop)
-"""
-# ========================= Read inputs:==========================================================
-"""
-#******************* Read in CSV files ***********************************
-# Read the csv file and save it as a data framenamed "df" ; "converters" helps to keep leading zeros when opening a csv file using Pandas
-df = pd.read_csv("input_work_orders.csv",encoding = 'unicode_escape',converters={'WONUM': lambda x: str(x)})    
-#Read worker schedule_calendar ; "converters" helps to keep leading zeros when opening a csv file using Pandas
-dfcal = pd.read_csv("input_employee_schedule.csv",encoding = 'unicode_escape', converters={'EMPLOYEE_ID': lambda x: str(x)})
-#Read the data which shows which week we are planning for - It has one value - the date of Sunday
-dfweek = pd.read_csv("input_parameters.csv",encoding = 'unicode_escape')
-#Matrix of employees and profienicies (1-5 skill level)
-proficiency = pd.read_csv("input_employee_info.csv",converters={'EMPLOYEE_ID': lambda x: str(x)})
-#Read 2020 dates
-dfn = pd.read_csv("2020cal.csv",encoding = 'unicode_escape')
-#On this file task names are associated with a task key
-taskkey = pd.read_csv("input_proficiency_master.csv")
 
-# Delete daily .csv files (otherwise they will keep appending):
-if os.path.isfile('dailyoutputcsv.csv'):
-    os.remove('dailyoutputcsv.csv')
-
-#%% Remove lower-priority, 8-hour jobs that well exceed 2x the scheduling capacity
-bufferfactor = 2            # Can make this 3x or something else
-df_original = df
-# Delete rows with hours or crewz = 0:
-df = df[df.CREW_SIZE != 0]
-df = df[df.HOURS != 0]
-# Remove priority-4 jobs that are not due in the next three weeks:
-duedates = pd.to_datetime(df.DUE_DATE)
-fixeddates = pd.to_datetime(df.FIXED_DATE)
-df.insert(10,'duedates',duedates)
-df.insert(11,'fixeddates',fixeddates)
-startdate = dfweek.Value[0]
-enddate = pd.to_datetime(startdate) + pd.DateOffset(days=21)
-endfixeddate = pd.to_datetime(startdate) + pd.DateOffset(days=7)
-pre_fixedjobs = df[df.fixeddates <= endfixeddate]
-df = pd.concat([df[(df.PRIORITY != 4)], df[(df.duedates <= enddate) & (df.duedates >= startdate)]])
-# Now, remove the priority-5 and priority-6 jobs:
-df_6 = df[(df.PRIORITY == 6) & (df.HOURS == 8)]
-df_not6 = pd.concat([df[df.PRIORITY !=6], df[(df.PRIORITY == 6) & (df.HOURS != 8)]])
-df_5 = df[(df.PRIORITY == 5) & (df.HOURS == 8)]
-df_not56 = pd.concat([df_not6[df_not6.PRIORITY !=5], df_not6[(df_not6.PRIORITY == 5) & (df_not6.HOURS != 8)]])
-totalwhours = 40*len(proficiency)               # Number of worker-hours potentially available
-totalhours = df['PLAN_HOURS'].sum()               # Number of hours in original schedule
-totalhours_excl6 = df_not6['PLAN_HOURS'].sum()
-totalhours_excl56 = df_not56['PLAN_HOURS'].sum()  # Number of hours if all 5's removed
-if totalhours > totalwhours*bufferfactor:                  # If backlog has more than 3x available worker hours...
-    if totalhours_excl6 >= totalwhours*bufferfactor:        # If backlog after removing 6's is still too big...
-        df = df_not6
-    if totalhours_excl56 >= totalwhours*bufferfactor:        # If backlog after removing 5's still does...
-        df = df_not56
-    else:                                       # Find percentage of P5 jobs to return
-        hourstoaddback = (totalwhours*bufferfactor - totalhours_excl56)/(totalhours - totalhours_excl56)
-        df_5add = df_5[:math.ceil(hourstoaddback*len(df_5))]
-        df = pd.concat([df_not56,df_5add])
-    # Now, let's check and see if any fixeddates jobs were removed:
-    reduced_fixedjobs = df[df.fixeddates <= endfixeddate]
-    if len(pre_fixedjobs) > len(reduced_fixedjobs):
-        listreduced = list(reduced_fixedjobs.index)
-        listtoaddback = pd.DataFrame(columns = df.columns)
-        for i in pre_fixedjobs.index:
-            if i not in listreduced:
-                listtoaddback = listtoaddback.append(pre_fixedjobs[pre_fixedjobs.index == i])
-        df = pd.concat([df,listtoaddback])        
-df = df.reset_index(drop=True)                   # Renumber
-    
-#%%############################ PREPROCESSING INPUT FILES ###############################################################
-#In these cases, we want to optimize the job into the schedule (most likely we are going to predetermine the date to work as this circumstance is usually outage related) as if the job is only planned for 8 hours/day.
-##### Set 8+ hour/day jobs to 8 hours:
-df.loc[df['HOURS'] > 8 , 'HOURS'] = 8
-
-# In the "input_employee_info.csv" file received on July 30, worker ID's do not have leading zeros.
-# Add leading zeros to make ID's read from here and the resource calendar consistent
-for i in range(2,len(proficiency.index)):
-    #Add leading zeros to have 5 digits (operator: dot z fill (5))
-    if len(proficiency["EMPLOYEE_ID"][i]) < 5: #normally ID's are 5 digits
-        proficiency["EMPLOYEE_ID"][i] = proficiency["EMPLOYEE_ID"][i].zfill(5)
-#Empty cells in the proficiency file are replaced with level '1'.
-proficiency = proficiency.fillna('1')
-dfcopy=df.copy()
-#Add a column to the dataframe to keep track of workers of multishift jobs
-dfcopy['wtocont'] = [[] for _ in range(dfcopy.shape[0])]
-
-################## Find unique work order numbers for J ############################
-jobnum = list(df.WONUM)
-jobnum_uq = []
-for i in jobnum:
-    if i not in jobnum_uq:
-        jobnum_uq.append(i) 
-numJ = len(jobnum_uq) 
-#%% This may be obsolete since Endevor started pre-splitting jobs? ####
-# # Create a dictionary to associate a job number (J; starting from 0) to every unique WONUM
-# presplitJ = list(range(len(jobnum_uq)))
-# #keys = jobnum_uq
-# #values = J = 0, ..., len(jobnum_uq) - 1
-# jobdict_J_WONUM = {jobnum_uq[i]: presplitJ[i] for i in range(len(jobnum_uq))}
-# profecy_colnames = list(proficiency.columns)
-#%% ########################## Process worker data #####################################
-# dfcal: worker schedule csv read as a dataframe
-# save EMPLOYEE_ID column from employee schedule as a list
-worker_ID_5dig = dfcal['EMPLOYEE_ID'].tolist()     
-# remove duplicates in the employee id list (each worker comes in more than one row)
-worker_ID_5dig_Uq = []
-for i in worker_ID_5dig:
-    if i not in worker_ID_5dig_Uq:
-        worker_ID_5dig_Uq.append(i) 
-#Associate range(numw) with worker ID’s
-#Bronx employee numbers start from 0 to len(WoID_5dig_Uq)
-worker_no=list(range(len(worker_ID_5dig_Uq))) #0 ... 9
-#Convert employee number and employee id lists into a dictionary using dictionary comprehension
-# initializing lists
-#keys = worker_ID_5dig_Uq
-#values = worker_no = 0, ..., 9
-#Use dictionary comprehension to convert lists to dictionary
-dictworker_id_no = {worker_ID_5dig_Uq[i]: worker_no[i] for i in range(len(worker_ID_5dig_Uq))}
-#Create a list from proficiency file employee_id
-#Add workernumber column to proficiency dataframe
-worker_ID_temp = proficiency['EMPLOYEE_ID'].tolist()  
-tempwno = []
-#worker number is an integer starting from 0 that is added as a new column to the dataframe
-for i in range(len(worker_ID_temp)):
-    if len(worker_ID_temp[i]) == 0: #empty
-        tempwno.append("")
-    else:
-        tempwno.append(dictworker_id_no[worker_ID_temp[i]]) 
-proficiency = proficiency.assign(workernumber = tempwno) 
-
-#Add workernumber column to input_employee_schedule/Bronx
-tempwnosch = []
-for i in range(len(worker_ID_5dig)):
-    tempwnosch.append(dictworker_id_no[worker_ID_5dig[i]]) 
-dfcal = dfcal.assign(workernumber = tempwnosch) 
-
-#%% ######################### worker availability preprocessing ################# dataframe:newdfcalw_bss ####################
-#Filter the dataframe to "Shift 2: 7am-3:30pm" only
-#Save the date of work days in the 2020 calendar as a list
-dfcalw = dfcal.loc[dfcal['SHIFT_DESC'] == "Shift 2: 7am-3:30pm"]  #Bronx
-dfcalw.reset_index(drop=True, inplace=True)
-## convert your datetime into pandas
-dfcalw.SCHEDULE_DATE=pd.to_datetime(dfcalw.SCHEDULE_DATE)
-#Remove weekends from resource calendar test
-res_cal_dates = dfcalw['SCHEDULE_DATE'].to_list()
-
-#%% ############## Preprocessing calendar information ##############
-# convert datetime into pandas
-dfn.date=pd.to_datetime(dfn.date)
-day_exclusion = ['Saturday', 'Sunday']
-# Remove weekends 
-dfnoss=dfn[~(pd.to_datetime(dfn['date']).dt.day_name().isin(day_exclusion))]
-#reset index
-dfnoss.reset_index(drop=True, inplace=True)
-
-#Start of the week (Sunday)
-sundate = list(dfweek.Value)
-#Add a column to the dataframe to do some operations on the date
-dfweek["weeksun"] = sundate
-#convert string to datetime
-dfweek["weeksun"] = pd.to_datetime(dfweek["weeksun"], dayfirst = True)
-    
-#Create a list from the 2020 dates -the year 2020 business days
-twenty_bss_dates = dfn['date'].to_list()
-#Convert the timestamp object to dataframe
-for i in range(len(twenty_bss_dates)):
-    if str(twenty_bss_dates[i]) != 'NaT':
-        twenty_bss_dates[i] = twenty_bss_dates[i].strftime('%Y-%m-%d')
-        
-for i in range(len(res_cal_dates)):
-    if str(res_cal_dates[i]) != 'NaT':
-        res_cal_dates[i] = res_cal_dates[i].strftime('%Y-%m-%d')
-              
-#%%**************** number of workers and number of hours **************
-numw = len(worker_ID_5dig_Uq)  
-numt = 8 
-# At a maximum, how many seconds do you want the code that creates the daily schedule takes to run?
-runtime = 3600 #1 hours
-day = 1
 #%%************Sequential Optimization (Repeat optimization 5 times to get a weeklong schedule)**************
 while day <=5:
     #Run the integer programming model to get a one day (8-hour) schedule
@@ -1877,5 +1846,9 @@ if os.path.isfile('output_weekly_schedule.csv'):
 dof = pd.read_csv('dailyoutputcsv.csv', header=None)
 dof.columns = ['Plan Day','WONUM','EmployeeID','Start Date/Time','Finish Date/Time']
 dof.to_csv('output_weekly_schedule.csv',mode = 'w', index=False)
+
+# Remove redundant dailyoutputcsv.csv file
+if os.path.isfile('dailyoutputcsv.csv'):
+    os.remove('dailyoutputcsv.csv')
 
 print("Final %s seconds ---" % (time.time() - start_time))

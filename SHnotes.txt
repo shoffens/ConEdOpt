@@ -1,8 +1,15 @@
 Notes:
--Main code starts at "User input :" comment (row 1882)
--Runtime original, just some minor code cleanup: 75 min
--Runtime with removed priority 5 and 6 jobs: 45 min
--Runtime with removed P4, P5, & P6 jobs: 2.5 min
+-No problem with df[:1231] (<60 sec)
+-df[:1233] 81 sec
+-([df[:1230],df[1250:1718],df[1719:]]) took 177 sec total!!!
+-([df[:1718],df[1719:]]) WITH BUFFERFACTOR = 5, took 201 sec total!!!
+-([df[:1231],df[1234:1715],df[1718:]]) took 657 sec total
+-([df[:1233],df[1234:1715],df[1718:]]) took 895 sec total
+-Must exclude 1719 OR 1716-18 for feasibility
+-([df[:1231],df[1233:1715],df[1718:]]) took over an hour! 3737 sec
+-([df[:1231],df[1240:1716],df[1718:]]) took a while to converge day 3, failed on day 3/4 ('0016702758' is not in list)
+-Long runtime problem with df[:1237] (Wed fail)
+-Crazy-long runtime problems with df[:1500], df[1000:] and bufferfactor = 2
 
 Sequence of main file:
 -Import all files
@@ -56,7 +63,8 @@ Questions:
 
 Things to do:
 -Make sure dropped P4-P6 jobs are not in same WONUM as kept jobs
--Add 2021 date capabilities to twenty_bss_dates, bzzhours, year2020dates
+-Add 2021 date capabilities to twenty_bss_dates, bzzhours, year2020dates [DONE!]
+-Add filters on 
 
 Things to check:
 -what does this line do? workingc = list(dict.fromkeys(workingc))
@@ -70,12 +78,12 @@ Assumptions/limitations:
 -All 8+ hour jobs are rewritten as 8 hours
 -Jobs with crew_size = 0 are dropped
 -Cannot handle grandfathered Jobs that started previous week
--Only handling "Shift 2": 7-3:30 and assuming 8 continuous hours
+-Only handling "Shift 2": 7-3:30 and assuming 8 continuous hours (at switch from dfcal to dfcalw)
 -Excluding Sat and Sun with day_exclusion (and again later)
 -dfn sets dates to 2020 calendar
 -all scheduled jobs that are 8 or fewer hours get removed/set to H = 0 at line: if HJ[i] <= 8:
 -all jobs with more than one proficiency required get set to task '59'
--
+-Deleting future parts of outage-required jobs
 
 Changes:
 -commented out block with creation of presplitJ, jobdict_J_WONUM, and profecy_colnames, which are never used
