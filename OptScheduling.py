@@ -89,10 +89,11 @@ fixeddates = pd.to_datetime(df.FIXED_DATE)
 df.insert(10,'duedates',duedates)
 df.insert(11,'fixeddates',fixeddates)
 startdate = dfweek.Value[0]
+mondate = pd.to_datetime(startdate) + pd.DateOffset(days=1)
 enddate = pd.to_datetime(startdate) + pd.DateOffset(days=21)
-endfixeddate = pd.to_datetime(startdate) + pd.DateOffset(days=7)
-pre_fixedjobs = df[df.fixeddates <= endfixeddate]
-df = pd.concat([df[(df.PRIORITY != 4)], df[(df.duedates <= enddate) & (df.duedates >= startdate)]])
+endfixeddate = pd.to_datetime(startdate) + pd.DateOffset(days=5)
+pre_fixedjobs = df[(df.fixeddates <= endfixeddate) & (df.fixeddates >= pd.to_datetime(mondate))]
+df = pd.concat([df[(df.PRIORITY != 4)], df[(df.duedates <= enddate) & (df.duedates >= mondate)]])
 
 # Remove OUTAGE jobs that are not fixed to occur this week:
 df_o = df[df.OUTAGE_REQUIRED == True]   # Identify outage-required jobs
