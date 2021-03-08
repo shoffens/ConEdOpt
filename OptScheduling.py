@@ -209,7 +209,7 @@ numt = 8
 runtime = 3600 #1 hours
 day = 1
 
-#%% Daily optimization loop
+#%% Daily optimization loop ###
 def dailyoptimization():
     global dfall    # Database of jobs. Unclear how different from df
     global dfcopy   # Same as dfall. Unclear why it exists
