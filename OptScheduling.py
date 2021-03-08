@@ -209,6 +209,74 @@ numt = 8
 runtime = 3600 #1 hours
 day = 1
 
+#%%
+def remove_outge_notdue():
+        #%%
+    global dfall
+    global dfcopy
+    global removedrow
+    global outage_st
+    global fixed
+    global downT
+    global day
+    global daydate
+    global year2020dates
+    global first_sun_index
+    global dfcal
+    global dfweek
+    ###################################Preprocess jobs based on outage requirement###################################
+    #<<If there is a fixed date, we would like to optimize the schedule around it>>
+    dfall = dfcopy.copy()
+    daydate = year2020dates[first_sun_index+day]
+    #%%#################Preprocess jobs based on outage requirement###################################
+    # Outage dates
+    #Remove jobs that their outage duration is not coming
+    removedrow= []
+    #If a subjob in J is due today, keep all the other subjobs to be continued on secutive days
+    ###****************************** outage columns ****************
+
+    # Get information about outages:
+    outage_st = list(pd.to_datetime(dfall.OUTAGE_START))
+    fixed = list(pd.to_datetime(dfall.FIXED_DATE))
+    downT = list(dfall.DOWNTIME)
+    #Convert the timestamp object to dataframe
+    for i in range(len(fixed)):
+        if str(fixed[i]) != 'NaT':
+            fixed[i] = fixed[i].strftime('%Y-%m-%d')
+    
+    #Keep track of J of outage required jobs due today, to keep all its sub-jobs in the dataframe
+    WONUMin = [] 
+    for j in range(len(dfall)):
+        if str(fixed[i]) != 'NaT' :
+            #If daydate!= fixeddate then remove job j from the data frame just for that day before the optimization starts
+            if fixed[j] == daydate :
+                #All the subjobs of this J have to stay
+                WONUMin.append(dfall.iloc[j]["WONUM"])   
+    
+    #Check jobs on df2 and save the indices if the outage is not due to remove these rows later
+    indexdel = [] 
+    for j in range(len(dfall)):
+        if str(fixed[i]) != 'NaT' :
+            #If daydate!= fixeddate then remove job j from the data frame just for that day before the optimization starts
+            if fixed[j] != daydate and dfall.iloc[j]["WONUM"] not in WONUMin:
+                #Keep a list of indexes that has to be later removed (and none of its j's is due today)
+                  indexdel.append(j)
+    #Add the rows that should be removed to a list
+    for i in indexdel:
+        removedrow.append(dfall.iloc[[i]])
+    
+    #Remove jobs from df
+    dfall = dfall.drop(dfall.index[indexdel])
+    dfall.reset_index(drop=True, inplace=True)
+
+    #df got updated, so the lists should be updated as well!
+    outage_st = list(pd.to_datetime(dfall.OUTAGE_START))
+    fixed = list(pd.to_datetime(dfall.FIXED_DATE))
+    downT = list(dfall.DOWNTIME)
+    #Convert the timestamp object to dataframe
+    for i in range(len(fixed)):
+        if str(fixed[i]) != 'NaT':
+            fixed[i] = fixed[i].strftime('%Y-%m-%d')
 #%% Daily optimization loop ###
 def dailyoptimization():
     global dfall    # Database of jobs. Unclear how different from df
@@ -287,55 +355,7 @@ def dailyoptimization():
     #reset index
     newdfcalw_bss.reset_index(drop=True, inplace=True)
     
-#%%#################Preprocess jobs based on outage requirement###################################
-    # Outage dates
-    #Remove jobs that their outage duration is not coming
-    removedrow= []
-    #If a subjob in J is due today, keep all the other subjobs to be continued on secutive days
-    ###****************************** outage columns ****************
-
-    # Get information about outages:
-    outage_st = list(pd.to_datetime(dfall.OUTAGE_START))
-    fixed = list(pd.to_datetime(dfall.FIXED_DATE))
-    downT = list(dfall.DOWNTIME)
-    #Convert the timestamp object to dataframe
-    for i in range(len(fixed)):
-        if str(fixed[i]) != 'NaT':
-            fixed[i] = fixed[i].strftime('%Y-%m-%d')
-    
-    #Keep track of J of outage required jobs due today, to keep all its sub-jobs in the dataframe
-    WONUMin = [] 
-    for j in range(len(dfall)):
-        if downT[j] == 1 and str(outage_st[j]) != 'NaT' :
-            #If daydate!= fixeddate then remove job j from the data frame just for that day before the optimization starts
-            if fixed[j] == daydate :
-                #All the subjobs of this J have to stay
-                WONUMin.append(dfall.iloc[j]["WONUM"])   
-    
-    #Check jobs on df2 and save the indices if the outage is not due to remove these rows later
-    indexdel = [] 
-    for j in range(len(dfall)):
-        if downT[j] == 1 and str(outage_st[j]) != 'NaT' :
-            #If daydate!= fixeddate then remove job j from the data frame just for that day before the optimization starts
-            if fixed[j] != daydate and dfall.iloc[j]["WONUM"] not in WONUMin:
-                #Keep a list of indexes that has to be later removed (and none of its j's is due today)
-                  indexdel.append(j)
-    #Add the rows that should be removed to a list
-    for i in indexdel:
-        removedrow.append(dfall.iloc[[i]])
-    
-    #Remove jobs from df
-    dfall = dfall.drop(dfall.index[indexdel])
-    dfall.reset_index(drop=True, inplace=True)
-
-    #df got updated, so the lists should be updated as well!
-    outage_st = list(pd.to_datetime(dfall.OUTAGE_START))
-    fixed = list(pd.to_datetime(dfall.FIXED_DATE))
-    downT = list(dfall.DOWNTIME)
-    #Convert the timestamp object to dataframe
-    for i in range(len(fixed)):
-        if str(fixed[i]) != 'NaT':
-            fixed[i] = fixed[i].strftime('%Y-%m-%d') 
+ 
 #%%*********** Get hours, crew size columns before grouping ****************
     #hhours is the hour of pre-grouping jobs #post-split jobs
     hhours = list(dfall.HOURS)
@@ -1739,6 +1759,9 @@ def dailyoptimization():
 
 #%%************Sequential Optimization (Repeat optimization 5 times to get a weeklong schedule)**************
 while day <=5:
+    #Remove outage-required jobs NOT DUE today
+    remove_outge_notdue()
+
     #Run the integer programming model to get a one day (8-hour) schedule
     optaj, opty, optx, optdelta = dailyoptimization()
 
