@@ -278,7 +278,8 @@ def remove_outge_notdue():
         if str(fixed[i]) != 'NaT':
             fixed[i] = fixed[i].strftime('%Y-%m-%d')
 #%% Daily optimization loop ###
-def dailyoptimization():
+def Create_LP_Run_Cplex():
+    from collections import Counter
     global dfall    # Database of jobs. Unclear how different from df
     global dfcopy   # Same as dfall. Unclear why it exists
     global dfJ      # dataframe of J groups (jobs with same WONUM)
@@ -296,6 +297,7 @@ def dailyoptimization():
 # "dfJ" multiple shifts (j) of a job with the same work order number all combined and are known as one J job
 
     #%%###### pre-split jobs: j that will be later combined into J ############################# 
+    daydate = year2020dates[first_sun_index+day]
     #Create a copy of the dataframe with all j’s / rows / jobs before grouping
     dfall = dfcopy.copy()
     # Task
@@ -614,66 +616,12 @@ def dailyoptimization():
         final[indices[i]] += coeff[i]
     
       return list(final.keys()), list(final.values())
-    
-#%% Functions for drawing table plots
-    def workercolor(j,w,t):
-        #The updated dataframe job numbers
-        colorlist = ['darkorchid','deeppink','red','darkorange','seagreen']
-        dfalltask =list(dfall.TASK)
-        wcolor = colorlist[int(Cws(dfalltask[j], w-1))-1]
-        the_table._cells[(w,t)]._text.set_color(wcolor)
 
-    #%% The output table is drawn using this function. The numbers in the cells show job number J (numbers starting from 1). Column ORGjobno in dfall stores J-1 (numbers start from zero).
-    def matrix2table(numt,numw,vas, solo):
-        # df2['gammas'] = gam
-        # gamma = list(dfJ.ORGjobno)
-        gamma = list(dfall.ORGjobno)
-        cellval = []
-        global Matrix
-        Matrix = [[0 for x in range(numt + 1)] for y in range(numw + 1)]
-        priotrack = [[0 for x in range(numt + 1)] for y in range(numw + 1)]
-        for i in range(1, len(Matrix)):
-            Matrix[i][0] = i
-            cellval.append( i)
-            priotrack[i][0] = 0 #arbitrary
-        for u in range(1, len(Matrix[i])):
-            Matrix[0][u] = u 
-            cellval.append(u)
-            priotrack[0][u] = 0
-        lowerj = dfall['index1'].tolist()
-        lowerjplus = [ x + 1 for x in lowerj ]  
-        for i in range(len(vas)):   #solo[i][0] = j* (starting from 1) #solo[i][0]-1 = job number starting from 0
-            if vas[i] == 1:
-                #gamma + 1 since gamma starts from 0
-                Matrix[solo[i][1]][solo[i][2]] = dfall.iloc[solo[i][0] - 1]["WONUM"]    #Why plus 1: since jobs on the lowerj list (post split) start from 0
-                cellval.append(gamma[lowerjplus.index(solo[i][0])]+ 1)    #solo[i][0]-1 = job number starting from 0; +1 means the table should show job num starting from 1
-                priotrack[solo[i][1]][solo[i][2]] =  priority[solo[i][0]-1]  
-        Matrix[0][0] = "W\T"
-    
-        sch = []
-        schj = []
-        for i in range(len(vas)):
-            if vas[i] == 1.0 or vas[i] == 1:   #Xjwt = 1
-                ### WONUM = job id = jobnum [j]
-                schj.append(solo[i][0]) #scheduled jobs
-                sch.append(gamma[lowerjplus.index(solo[i][0])]+ 1) #scheduled jobs
-             
-    #    remove duplicate
-        resJ = []
-        for i in schj:
-            if i not in resJ:
-                resJ.append(i)      
-        notsch = []
-        allj = list(range(len(lowerj)))
-        
-        joe = [x+1 for x in allj]
-        for i in joe:
-            if i not in resJ:
-                notsch.append(i)
-        return Matrix, priotrack
      
 #%% Create constraints
     def createLRHS():
+        global dfall
+        global fixed
         ################### Constraint 20######################################################
         #To fix the conflicting issue of constraints 18 and 19
         delx = []
@@ -1561,6 +1509,83 @@ def dailyoptimization():
     myProblem.parameters.timelimit.set(runtime) 
     ## Solve the model and print the answer  
     myProblem.solve()  
+
+
+#%% Functions for drawing table plots
+def workercolor(j,w,t):
+    global dfall
+    #The updated dataframe job numbers
+    colorlist = ['darkorchid','deeppink','red','darkorange','seagreen']
+    dfalltask =list(dfall.TASK)
+    wcolor = colorlist[int(Cws(dfalltask[j], w-1))-1]
+    the_table._cells[(w,t)]._text.set_color(wcolor)
+
+#%% The output table is drawn using this function. The numbers in the cells show job number J (numbers starting from 1). Column ORGjobno in dfall stores J-1 (numbers start from zero).
+def matrix2table(numt,numw,vas, solo):
+    # df2['gammas'] = gam
+    # gamma = list(dfJ.ORGjobno)
+    gamma = list(dfall.ORGjobno)
+    cellval = []
+    global Matrix
+    Matrix = [[0 for x in range(numt + 1)] for y in range(numw + 1)]
+    priotrack = [[0 for x in range(numt + 1)] for y in range(numw + 1)]
+    for i in range(1, len(Matrix)):
+        Matrix[i][0] = i
+        cellval.append( i)
+        priotrack[i][0] = 0 #arbitrary
+    for u in range(1, len(Matrix[i])):
+        Matrix[0][u] = u 
+        cellval.append(u)
+        priotrack[0][u] = 0
+    lowerj = dfall['index1'].tolist()
+    lowerjplus = [ x + 1 for x in lowerj ]  
+    for i in range(len(vas)):   #solo[i][0] = j* (starting from 1) #solo[i][0]-1 = job number starting from 0
+        if vas[i] == 1:
+            #gamma + 1 since gamma starts from 0
+            Matrix[solo[i][1]][solo[i][2]] = dfall.iloc[solo[i][0] - 1]["WONUM"]    #Why plus 1: since jobs on the lowerj list (post split) start from 0
+            cellval.append(gamma[lowerjplus.index(solo[i][0])]+ 1)    #solo[i][0]-1 = job number starting from 0; +1 means the table should show job num starting from 1
+            priotrack[solo[i][1]][solo[i][2]] =  priority[solo[i][0]-1]  
+    Matrix[0][0] = "W\T"
+
+    sch = []
+    schj = []
+    for i in range(len(vas)):
+        if vas[i] == 1.0 or vas[i] == 1:   #Xjwt = 1
+            ### WONUM = job id = jobnum [j]
+            schj.append(solo[i][0]) #scheduled jobs
+            sch.append(gamma[lowerjplus.index(solo[i][0])]+ 1) #scheduled jobs
+         
+#    remove duplicate
+    resJ = []
+    for i in schj:
+        if i not in resJ:
+            resJ.append(i)      
+    notsch = []
+    allj = list(range(len(lowerj)))
+    
+    joe = [x+1 for x in allj]
+    for i in joe:
+        if i not in resJ:
+            notsch.append(i)
+    return Matrix, priotrack    
+#%%    
+def optimalsol_drawtable():
+    global var_vals
+    global scheduledj
+    global scheduledJ
+    global optaj
+    global opty 
+    global optx 
+    global optdelta
+    global Mx
+    global numw
+    global lowerj
+    global numt
+    global the_table
+    global numJ
+    global myProblem
+    
+    
     
     # Obj function val
     obj_val = myProblem.solution.get_objective_value()
@@ -1657,13 +1682,23 @@ def dailyoptimization():
                    
         pl.show() 
         
-    #%% Save optimal variable values:
-    optaj = var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ:len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj)]
-    opty =  var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) :len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ]
-    optx = var_vals[0:len(lowerj) * numw * numt]
-    optdelta = var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ + len(lowerj) * numt:len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ + len(lowerj) * numt + len(lowerj)* numw]
+        #%% Save optimal variable values:
+        optaj = var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ:len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj)]
+        opty =  var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) :len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ]
+        optx = var_vals[0:len(lowerj) * numw * numt]
+        optdelta = var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ + len(lowerj) * numt:len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ + len(lowerj) * numt + len(lowerj)* numw]
+        return optaj, opty, optx, optdelta;
+
 
     #%% Write the output to a csv file
+def csv_ouput():
+    global var_vals
+    global lowerj
+    global numw
+    global numt
+    global Mx
+    global newdfcalw_bss
+    
     wonumtocsv = []
     workertocsv = [] 
     startdh = []
@@ -1763,8 +1798,17 @@ while day <=5:
     remove_outge_notdue()
 
     #Run the integer programming model to get a one day (8-hour) schedule
-    optaj, opty, optx, optdelta = dailyoptimization()
-
+    Create_LP_Run_Cplex()
+    #%%
+    ############################# Check feasibility ############################
+    currentsol = myProblem.solution
+    # solution.get_status() returns an integer code
+    print("Solution status = ", currentsol.get_status(), ":", end=' ')
+    # the following line prints the corresponding string
+    print(currentsol.status[currentsol.get_status()])
+ #%%
+    optaj, opty, optx, optdelta = optimalsol_drawtable()
+    csv_ouput()
     # Using the results, identify started, unfinished Jobs: sum(a_j) = 1 and y_J = 0
     dfg = dfall.copy()
     Hg = HJ
