@@ -53,7 +53,8 @@ workdaycal = []
 for i in range(dayrange):
     if (calendar[i].strftime("%A")[0] != 'Sunday') & (calendar[i].strftime("%A")[0] != 'Saturday'):
         workdaycal.append(calendar[i].strftime("%Y-%m-%d")[0])
-        
+
+      
 #%% Remove lower-priority, 8-hour jobs that well exceed 2x the scheduling capacity
 bufferfactor = 5           # Can make this 3x or something else
 df_original = df
@@ -209,6 +210,8 @@ numt = 8
 runtime = 3600 #1 hours
 day = 1
 
+#The date for which a schedule is prepared
+daydate = workdaycal[day - 1]  
 #%%
 def remove_outge_notdue():
         #%%
@@ -227,7 +230,6 @@ def remove_outge_notdue():
     ###################################Preprocess jobs based on outage requirement###################################
     #<<If there is a fixed date, we would like to optimize the schedule around it>>
     dfall = dfcopy.copy()
-    daydate = year2020dates[first_sun_index+day]
     #%%#################Preprocess jobs based on outage requirement###################################
     # Outage dates
     #Remove jobs that their outage duration is not coming
@@ -277,6 +279,32 @@ def remove_outge_notdue():
     for i in range(len(fixed)):
         if str(fixed[i]) != 'NaT':
             fixed[i] = fixed[i].strftime('%Y-%m-%d')
+#%%
+# having a number as an index, find its numJ, numw, and numt
+def findjwt(sol):
+    cntr = -1
+    assgt = []
+    for jj in range(1, len(lowerj) + 1):
+        for ww in range(1, numw + 1):
+            
+            for tt in range(1, numt + 1):
+                cntr += 1
+                assgt.append([])
+                assgt[cntr].append(jj)
+                assgt[cntr].append(ww)
+                assgt[cntr].append(tt)
+    return assgt
+
+#%%
+def workerskill(wno, qno):
+    taskprof = list(proficiency[qno])
+    whichworker = list(proficiency.workernumber)
+    s = taskprof[whichworker.index(wno)]
+    return taskprof,s
+
+def Cws(qno, wk):
+    #return the Cws = the level of proficiency of worker w for job j which needs task qj
+    return workerskill(wk, qno)[1]
 #%% Daily optimization loop ###
 def Create_LP_Run_Cplex():
     from collections import Counter
@@ -292,12 +320,22 @@ def Create_LP_Run_Cplex():
     global Mx
     global scheduledJ
     global scheduledj
+    global daydate
+    global day
+    global dfcalw_bss
+    global newdfcalw_bss
+    global Ew
+    global numw
+    global numt
+    global myProblem
+    global priority
+    global numJ
+    global fixed
 # "df" is the original dataframe that was created when the CSV file was read in the program named "SequentialOpt_Weeklyschedule.py"
 # "dfall" post-split jobs - Basically that is df but some rows are deleted for some purposes
 # "dfJ" multiple shifts (j) of a job with the same work order number all combined and are known as one J job
 
     #%%###### pre-split jobs: j that will be later combined into J ############################# 
-    daydate = year2020dates[first_sun_index+day]
     #Create a copy of the dataframe with all j’s / rows / jobs before grouping
     dfall = dfcopy.copy()
     # Task
@@ -532,15 +570,7 @@ def Create_LP_Run_Cplex():
     # taskno = taskkey['Profienency_Nbr'].tolist()
     
     #%% ######## Functions for Proficiencies############################################
-    def workerskill(wno, qno):
-        taskprof = list(proficiency[qno])
-        whichworker = list(proficiency.workernumber)
-        s = taskprof[whichworker.index(wno)]
-        return taskprof,s
-    
-    def Cws(qno, wk):
-        #return the Cws = the level of proficiency of worker w for job j which needs task qj
-        return workerskill(wk, qno)[1]
+
     
     def qualifiedw(qno, l):
         # Count the number of workers whose Cws = l
@@ -592,21 +622,7 @@ def Create_LP_Run_Cplex():
     def getdeltajwindex(delt,w,numw,numt):  
         return (w + (delt - 1) * numw)  + len(lowerj)*numw*numt  + len(lowerj)*numt + numJ + len(lowerj) + numJ + len(lowerj) * numt - 1
     
-    #%%
-    # having a number as an index, find its numJ, numw, and numt
-    def findjwt(sol):
-        cntr = -1
-        assgt = []
-        for jj in range(1, len(lowerj) + 1):
-            for ww in range(1, numw + 1):
-                
-                for tt in range(1, numt + 1):
-                    cntr += 1
-                    assgt.append([])
-                    assgt[cntr].append(jj)
-                    assgt[cntr].append(ww)
-                    assgt[cntr].append(tt)
-        return assgt
+
     
 #%% Ensure the left hand side matrix does not have duplicates (Cplex requirement)
     def removedupl(indices, coeff):
@@ -622,6 +638,16 @@ def Create_LP_Run_Cplex():
     def createLRHS():
         global dfall
         global fixed
+        
+                # Get information about outages:
+        outage_st = list(pd.to_datetime(dfall.OUTAGE_START))
+        fixed = list(pd.to_datetime(dfall.FIXED_DATE))
+        downT = list(dfall.DOWNTIME)
+        #Convert the timestamp object to dataframe
+        for i in range(len(fixed)):
+            if str(fixed[i]) != 'NaT':
+                fixed[i] = fixed[i].strftime('%Y-%m-%d')
+  
         ################### Constraint 20######################################################
         #To fix the conflicting issue of constraints 18 and 19
         delx = []
@@ -649,7 +675,7 @@ def Create_LP_Run_Cplex():
         # countoutreq = -1
         for j in lowerj:
             # If the Outage required field is checked on
-            if downT[j] == 1 and str(outage_st[j])!= 'nan'  :
+            if fixed[j]!= 'nan'  :
                 if fixed[j] == daydate :
             # if outage_req[j] == 'True' and not pd.isna(float(outage_st[j]))  :
                 # print("harhar",j)
