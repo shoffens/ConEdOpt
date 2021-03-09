@@ -1673,7 +1673,7 @@ def optimalsol_drawtable():
             if Mx[w][t] == 0:
                   the_table._cells[(w, t)].set_facecolor("black")
     
-    #%% worker legend on day 1 only 
+    #%%% worker legend on day 1 only 
     if day == 1:
         the_table.auto_set_font_size(False)
         the_table.set_fontsize(22)
