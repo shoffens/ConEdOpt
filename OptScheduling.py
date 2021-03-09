@@ -210,8 +210,7 @@ numt = 8
 runtime = 3600 #1 hours
 day = 1
 
-#The date for which a schedule is prepared
-daydate = workdaycal[day - 1]  
+
 #%%
 def remove_outge_notdue():
         #%%
@@ -227,9 +226,79 @@ def remove_outge_notdue():
     global first_sun_index
     global dfcal
     global dfweek
+    global dfJ      # dataframe of J groups (jobs with same WONUM)
+    global HJ       # hours left in J groups
+    global lowerj
+    global jinJ
+    global hhours
+    global removedrow
+    global var_vals
+    global Mx
+    global scheduledJ
+    global scheduledj
+    global  newdfcalw_bss
+    global dfcalw_bss
+    #Create a copy of the dataframe with all j’s / rows / jobs before grouping
+    dfall = dfcopy.copy()
+    # Task
+    dfall["TASK"] = dfall["PROFICIENCY_NBRS"]
+    ##Deal with more than one required task for a job
+    for i in range(len(dfall.index)):
+        if "|" in dfall["PROFICIENCY_NBRS"][i]:
+            # pipe delimited values saved as a string
+          dfall.iloc[i, dfall.columns.values.tolist().index("TASK")] = "59"
+      
+    cols_of_interest = ['WONUM','REPORT_DATE','DUE_DATE','FIXED_DATE','NUMBER_OF_DAYS','DAY_NUMBER','CREW_SIZE','HOURS','PRIORITY','OUTAGE_REQUIRED','OUTAGE_START','OUTAGE_END','DOWNTIME','PROFICIENCY_NBRS','TASK','wtocont']
+    #Limit columns of the dataframe to the ones needed
+    dfall = dfall[cols_of_interest]
     ###################################Preprocess jobs based on outage requirement###################################
     #<<If there is a fixed date, we would like to optimize the schedule around it>>
-    dfall = dfcopy.copy()
+
+        #%% ######### Manage date columns ######################################################
+    firstday = list(dfweek.Value)
+    target_week = firstday[0]
+    target_weekZ = pd.to_datetime(target_week)
+    
+    #Save theDue Date column in the csv in this list 
+    duedate = list(dfall.DUE_DATE)
+    #Add a column to the dataframe to do some operations on the due dates
+    dfall["DUE"] = duedate
+    #convert string to datetime
+    dfall["DUE"] = pd.to_datetime(dfall["DUE"], dayfirst = True)
+    #Replace WhiteSpace with a 0 in Pandas (Python 3)
+    dfall['DUE'] = dfall['DUE'].apply(lambda x: 0 if x == ' ' else x)
+    
+    ##################### DUE DATES ###############################
+    #Calculate the due dates that will be used in the objective function
+    # The number of days between the date on the Due Date column of the csv file and the target_week date specified as 1/1/2019
+    dfall["DUEDUE"] = (dfall["DUE"] - target_weekZ).dt.days
+    
+#%% ########### Identify dates of the week (NEW) ########### 
+    # Identify weekend rows of resource calendar
+    weekendrows=[i for i, item in enumerate(res_cal_dates) if item not in workdaycal]
+    #Delete weekeds from resource calendar dataframe
+    dfcalw_bss = dfcalw.drop(dfcalw.index[weekendrows])
+    #reset index and save it as a column
+    dfcalw_bss.reset_index(drop=True, inplace=True)
+
+    # Create an index of business day working hours:       
+    bushours = []
+    for i in res_cal_dates:
+        if i in workdaycal:
+            bushours.append(workdaycal.index(i) + 1)
+            
+    #daynumber = [item for item in bushours]
+    dfcalw_bss["dayN"] = bushours
+    daydate = workdaycal[day - 1]
+    
+    ##### NOT SURE IF THE NEXT FEW LINES ARE REALLY NEEDED:
+    #Copy the dataframe
+    newdfcalw_bss = dfcalw_bss.copy()
+    #Repeat each row 8 times (8 hours per day)
+    newdfcalw_bss = newdfcalw_bss.loc[np.repeat(newdfcalw_bss.index.values, 8)]
+    #reset index
+    newdfcalw_bss.reset_index(drop=True, inplace=True)
+    
     #%%#################Preprocess jobs based on outage requirement###################################
     # Outage dates
     #Remove jobs that their outage duration is not coming
@@ -249,7 +318,7 @@ def remove_outge_notdue():
     #Keep track of J of outage required jobs due today, to keep all its sub-jobs in the dataframe
     WONUMin = [] 
     for j in range(len(dfall)):
-        if str(fixed[i]) != 'NaT' :
+        if downT[j] == 1 and str(outage_st[j]) != 'NaT' :
             #If daydate!= fixeddate then remove job j from the data frame just for that day before the optimization starts
             if fixed[j] == daydate :
                 #All the subjobs of this J have to stay
@@ -258,7 +327,7 @@ def remove_outge_notdue():
     #Check jobs on df2 and save the indices if the outage is not due to remove these rows later
     indexdel = [] 
     for j in range(len(dfall)):
-        if str(fixed[i]) != 'NaT' :
+        if downT[j] == 1 and str(outage_st[j]) != 'NaT' :
             #If daydate!= fixeddate then remove job j from the data frame just for that day before the optimization starts
             if fixed[j] != daydate and dfall.iloc[j]["WONUM"] not in WONUMin:
                 #Keep a list of indexes that has to be later removed (and none of its j's is due today)
@@ -279,6 +348,8 @@ def remove_outge_notdue():
     for i in range(len(fixed)):
         if str(fixed[i]) != 'NaT':
             fixed[i] = fixed[i].strftime('%Y-%m-%d')
+    # import pdb; pdb. set_trace()
+    # print("fixed")
 #%%
 # having a number as an index, find its numJ, numw, and numt
 def findjwt(sol):
@@ -330,72 +401,13 @@ def Create_LP_Run_Cplex():
     global myProblem
     global priority
     global numJ
-    global fixed
+    global fixed        
+    global downT
+    global outage_st
 # "df" is the original dataframe that was created when the CSV file was read in the program named "SequentialOpt_Weeklyschedule.py"
 # "dfall" post-split jobs - Basically that is df but some rows are deleted for some purposes
 # "dfJ" multiple shifts (j) of a job with the same work order number all combined and are known as one J job
 
-    #%%###### pre-split jobs: j that will be later combined into J ############################# 
-    #Create a copy of the dataframe with all j’s / rows / jobs before grouping
-    dfall = dfcopy.copy()
-    # Task
-    dfall["TASK"] = dfall["PROFICIENCY_NBRS"]
-    ##Deal with more than one required task for a job
-    for i in range(len(dfall.index)):
-        if "|" in dfall["PROFICIENCY_NBRS"][i]:
-            # pipe delimited values saved as a string
-          dfall.iloc[i, dfall.columns.values.tolist().index("TASK")] = "59"
-      
-    cols_of_interest = ['WONUM','REPORT_DATE','DUE_DATE','FIXED_DATE','NUMBER_OF_DAYS','DAY_NUMBER','CREW_SIZE','HOURS','PRIORITY','OUTAGE_REQUIRED','OUTAGE_START','OUTAGE_END','DOWNTIME','PROFICIENCY_NBRS','TASK','wtocont']
-    #Limit columns of the dataframe to the ones needed
-    dfall = dfall[cols_of_interest]
-    
-    #%% ######### Manage date columns ######################################################
-    firstday = list(dfweek.Value)
-    target_week = firstday[0]
-    target_weekZ = pd.to_datetime(target_week)
-    
-    #Save theDue Date column in the csv in this list 
-    duedate = list(dfall.DUE_DATE)
-    #Add a column to the dataframe to do some operations on the due dates
-    dfall["DUE"] = duedate
-    #convert string to datetime
-    dfall["DUE"] = pd.to_datetime(dfall["DUE"], dayfirst = True)
-    #Replace WhiteSpace with a 0 in Pandas (Python 3)
-    dfall['DUE'] = dfall['DUE'].apply(lambda x: 0 if x == ' ' else x)
-    
-    ##################### DUE DATES ###############################
-    #Calculate the due dates that will be used in the objective function
-    # The number of days between the date on the Due Date column of the csv file and the target_week date specified as 1/1/2019
-    dfall["DUEDUE"] = (dfall["DUE"] - target_weekZ).dt.days
-    
-#%% ########### Identify dates of the week (NEW) ########### 
-    # Identify weekend rows of resource calendar
-    weekendrows=[i for i, item in enumerate(res_cal_dates) if item not in workdaycal]
-    #Delete weekeds from resource calendar dataframe
-    dfcalw_bss = dfcalw.drop(dfcalw.index[weekendrows])
-    #reset index and save it as a column
-    dfcalw_bss.reset_index(drop=True, inplace=True)
-
-    # Create an index of business day working hours:       
-    bushours = []
-    for i in res_cal_dates:
-        if i in workdaycal:
-            bushours.append(workdaycal.index(i) + 1)
-            
-    #daynumber = [item for item in bushours]
-    dfcalw_bss["dayN"] = bushours
-    daydate = workdaycal[day - 1]
-    
-    ##### NOT SURE IF THE NEXT FEW LINES ARE REALLY NEEDED:
-    #Copy the dataframe
-    newdfcalw_bss = dfcalw_bss.copy()
-    #Repeat each row 8 times (8 hours per day)
-    newdfcalw_bss = newdfcalw_bss.loc[np.repeat(newdfcalw_bss.index.values, 8)]
-    #reset index
-    newdfcalw_bss.reset_index(drop=True, inplace=True)
-    
- 
 #%%*********** Get hours, crew size columns before grouping ****************
     #hhours is the hour of pre-grouping jobs #post-split jobs
     hhours = list(dfall.HOURS)
@@ -636,17 +648,19 @@ def Create_LP_Run_Cplex():
      
 #%% Create constraints
     def createLRHS():
-        global dfall
-        global fixed
+        # global dfall
+        # global fixed
+        # global downT
+        # global outage_st
         
-                # Get information about outages:
-        outage_st = list(pd.to_datetime(dfall.OUTAGE_START))
-        fixed = list(pd.to_datetime(dfall.FIXED_DATE))
-        downT = list(dfall.DOWNTIME)
-        #Convert the timestamp object to dataframe
-        for i in range(len(fixed)):
-            if str(fixed[i]) != 'NaT':
-                fixed[i] = fixed[i].strftime('%Y-%m-%d')
+        #         # Get information about outages:
+        # outage_st = list(pd.to_datetime(dfall.OUTAGE_START))
+        # fixed = list(pd.to_datetime(dfall.FIXED_DATE))
+        # downT = list(dfall.DOWNTIME)
+        # #Convert the timestamp object to dataframe
+        # for i in range(len(fixed)):
+        #     if str(fixed[i]) != 'NaT':
+        #         fixed[i] = fixed[i].strftime('%Y-%m-%d')
   
         ################### Constraint 20######################################################
         #To fix the conflicting issue of constraints 18 and 19
@@ -675,7 +689,7 @@ def Create_LP_Run_Cplex():
         # countoutreq = -1
         for j in lowerj:
             # If the Outage required field is checked on
-            if fixed[j]!= 'nan'  :
+            if downT[j] == 1 and str(outage_st[j])!= 'nan'  :
                 if fixed[j] == daydate :
             # if outage_req[j] == 'True' and not pd.isna(float(outage_st[j]))  :
                 # print("harhar",j)
@@ -1708,12 +1722,12 @@ def optimalsol_drawtable():
                    
         pl.show() 
         
-        #%% Save optimal variable values:
-        optaj = var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ:len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj)]
-        opty =  var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) :len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ]
-        optx = var_vals[0:len(lowerj) * numw * numt]
-        optdelta = var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ + len(lowerj) * numt:len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ + len(lowerj) * numt + len(lowerj)* numw]
-        return optaj, opty, optx, optdelta;
+    #%% Save optimal variable values:
+    optaj = var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ:len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj)]
+    opty =  var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) :len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ]
+    optx = var_vals[0:len(lowerj) * numw * numt]
+    optdelta = var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ + len(lowerj) * numt:len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj) + numJ + len(lowerj) * numt + len(lowerj)* numw]
+    return optaj, opty, optx, optdelta;
 
 
     #%% Write the output to a csv file
