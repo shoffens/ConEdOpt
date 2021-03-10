@@ -240,14 +240,19 @@ def remove_outge_notdue():
     global dfcalw_bss
     #Create a copy of the dataframe with all j’s / rows / jobs before grouping
     dfall = dfcopy.copy()
-    # Task
-    dfall["TASK"] = dfall["PROFICIENCY_NBRS"]
-    ##Deal with more than one required task for a job
+    #*******Deal with more than one required task for a job************
+    Taskset  = []
+    ix = 0
     for i in range(len(dfall.index)):
         if "|" in dfall["PROFICIENCY_NBRS"][i]:
             # pipe delimited values saved as a string
-          dfall.iloc[i, dfall.columns.values.tolist().index("TASK")] = "59"
-      
+          Taskset.append(dfall.iloc[i]["PROFICIENCY_NBRS"].replace('|',','))
+          # Splits at ',' 
+          Taskset[ix] = Taskset[ix].split(',')
+        else:
+            Taskset.append(dfall.iloc[i]["PROFICIENCY_NBRS"])
+        ix += 1
+    dfall["TASK"] = Taskset  
     cols_of_interest = ['WONUM','REPORT_DATE','DUE_DATE','FIXED_DATE','NUMBER_OF_DAYS','DAY_NUMBER','CREW_SIZE','HOURS','PRIORITY','OUTAGE_REQUIRED','OUTAGE_START','OUTAGE_END','DOWNTIME','PROFICIENCY_NBRS','TASK','wtocont']
     #Limit columns of the dataframe to the ones needed
     dfall = dfall[cols_of_interest]
@@ -368,14 +373,35 @@ def findjwt(sol):
 
 #%%
 def workerskill(wno, qno):
-    taskprof = list(proficiency[qno])
-    whichworker = list(proficiency.workernumber)
-    s = taskprof[whichworker.index(wno)]
+    #if qno is a list:
+    if isinstance(qno, list): #if not false (ture) = is scalar
+        #For each element of the list , find workerskill and the one which gives the minimum skill is selected
+        w_levels = []
+        for k in range(len(qno)):
+            w_levels.append(workerskill(wno, qno[k])[1])
+        s = min(w_levels)
+        return 9,s
+    else:
+        taskprof = list(proficiency[qno])
+        whichworker = list(proficiency.workernumber)
+        s = taskprof[whichworker.index(wno)]
     return taskprof,s
 
+#qno or task requirement can be either an integer such as 59 or a list ['17','18']
 def Cws(qno, wk):
+    #if qno is scalar:
+    if not isinstance(qno, list): #if not false (ture) = is scalar
+            #return the Cws = the level of proficiency of worker w for job j which needs task qj
+        return workerskill(wk, qno)[1]
+    
+    #if q is a list
+    else:
+        #For each element of the list , find workerskill and the one which gives the minimum skill is selected
+        w_levels = []
+        for k in range(len(qno)):
+            w_levels.append(workerskill(wk, qno[k])[1])
     #return the Cws = the level of proficiency of worker w for job j which needs task qj
-    return workerskill(wk, qno)[1]
+        return min(w_levels)
 #%% Daily optimization loop ###
 def Create_LP_Run_Cplex():
     from collections import Counter
@@ -404,6 +430,7 @@ def Create_LP_Run_Cplex():
     global fixed        
     global downT
     global outage_st
+    global q
 # "df" is the original dataframe that was created when the CSV file was read in the program named "SequentialOpt_Weeklyschedule.py"
 # "dfall" post-split jobs - Basically that is df but some rows are deleted for some purposes
 # "dfJ" multiple shifts (j) of a job with the same work order number all combined and are known as one J job
@@ -422,12 +449,7 @@ def Create_LP_Run_Cplex():
     lowerj =dfall['index1'].tolist()
     
     q = list(dfall.TASK) # q stands for qualification
-    
-    q = [float(x) for x in q]
-    #Replace nan with zero
-    q = [0 if math.isnan(i) else i for i in q] 
-    #Call int() function on every list element?
-    q = [ int(x) for x in q ]# -*- coding: utf-8 -*-   
+   
 #%% Groupby cannot handle NAN values - first replace nans in the DUE_DATE & FIXED_DATE column with zero
     dfall["DUE_DATE"].fillna(0, inplace = True)
     dfall["FIXED_DATE"].fillna(0, inplace = True)           
@@ -541,7 +563,7 @@ def Create_LP_Run_Cplex():
     #Worker numbers on windex column start from 1 (not 0) WHY?
     newdfcalw_bss["windex"] = list(newdfcalw_bss.workernumber)
     orgq = list(dfJ.TASK) # q stands for qualification
-    orgq = [ int(x) for x in orgq ]
+
     
     ################## pre-split jobs: J ############################
     #%% Parameter Ew: how many hours this worker continues to be available beyond today
@@ -726,7 +748,11 @@ def Create_LP_Run_Cplex():
                             if unfinWONUM[i] and wp in Alljwdelta1[i]:
                                 #deltajw_yest = 1
                                 #check proficiency level to be greater than 3
-                                if int(workerskill(wp,str(q[j]))[1]) >= 3:
+                                print("assignedw[i]",assignedw[i])
+                                print("q[j]",q[j])
+                                print("wp",wp)
+                                print("workerskill",workerskill(wp,q[j])[1])
+                                if int(workerskill(wp,q[j])[1]) >= 3:
                                      thesew.append(wp)
                     # print("thesew",thesew)
                     if len(thesew) > 0:
@@ -750,7 +776,7 @@ def Create_LP_Run_Cplex():
                             if unfinWONUM[i] and wp in Alljwdelta1[i]:
                                 #deltajw_yest = 1
                                 #check proficiency level to be greater than 3
-                                if int(workerskill(wp,str(q[j]))[1]) >= 3:
+                                if int(workerskill(wp,q[j])[1]) >= 3:
                                      thesew.append(wp)
                     # print("thesew",thesew)
                     if len(thesew) > 0:
@@ -772,7 +798,7 @@ def Create_LP_Run_Cplex():
             #Find w's in Cws>= 3
             theproficient = []
             for i in range(3,6):
-                for k in qualifiedw(str(q[j]), i):
+                for k in qualifiedw(q[j], i):
                     theproficient.append(k)
             #only unique values
             theproficient = np.unique(theproficient)
@@ -802,7 +828,7 @@ def Create_LP_Run_Cplex():
             #Find w's in Cws>= 3
             theproficient = []
             for i in range(3,6):
-                for k in qualifiedw(str(q[j]), i):
+                for k in qualifiedw(q[j], i):
                     theproficient.append(k)
             #only unique values
             theproficient = np.unique(theproficient)
@@ -863,13 +889,13 @@ def Create_LP_Run_Cplex():
         leftskill= []
         sp = -1      
         for j in lowerj:                       
-            if len(qualifiedw(str(q[j]), 1)) > 0:
+            if len(qualifiedw(q[j], 1)) > 0:
                 for t in range(numt):
                 
                     sp += 1
                     indskill.append([])
                     leftskill.append([])
-                    for w in qualifiedw(str(q[j]), 1):
+                    for w in qualifiedw(q[j], 1):
     
                             #Left hand sidefor w in qualifiedw(str(q[j]), 1):
                             indskill[sp].append(getxindex(j+1,w+1 ,t+1,numw,numt))
@@ -881,19 +907,19 @@ def Create_LP_Run_Cplex():
         secleftskill= []
         sep = -1   
         for j in lowerj: 
-              if len(qualifiedw(str(q[j]), 2)) > 0:
+              if len(qualifiedw(q[j], 2)) > 0:
                     for t in range(numt):
                             sep += 1
                             secindskill.append([])
                             secleftskill.append([])
-                            for w in qualifiedw(str(q[j]), 5):
+                            for w in qualifiedw(q[j], 5):
             
                                 #Left hand sidefor w in qualifiedw(str(q[j]), 1):
                                 secindskill[sep].append(getxindex(j+1,w+1 ,t+1,numw,numt))
                                 secleftskill[sep].append(1)
                                 
                         # level 2   
-                            for w in qualifiedw(str(q[j]), 2):
+                            for w in qualifiedw(q[j], 2):
             
                                 #Left hand sidefor w in qualifiedw(str(q[j]), 1):
                                 secindskill[sep].append(getxindex(j+1,w+1 ,t+1,numw,numt))
@@ -1834,6 +1860,8 @@ def csv_ouput():
 
 #%%************Sequential Optimization (Repeat optimization 5 times to get a weeklong schedule)**************
 while day <=5:
+    
+
     #Remove outage-required jobs NOT DUE today
     remove_outge_notdue()
 
@@ -1942,6 +1970,7 @@ while day <=5:
 #%% This updated dataframe (dfall) will be used in the next iteration
     dfcopy = dfall.copy()
     # Go to the next day    
+    # import pdb; pdb. set_trace()
     day += 1
     
 #The rows of the last updated df are jobs that are not scheduled or not completed
