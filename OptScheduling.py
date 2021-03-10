@@ -29,13 +29,13 @@ start_time = time.time()
 #%% ****************** Read in CSV files ***********************************
 
 # Read the csv file and save it as a data framenamed "df" ; "converters" helps to keep leading zeros when opening a csv file using Pandas
-df = pd.read_csv("input_work_orders.csv",encoding = 'unicode_escape',converters={'WONUM': lambda x: str(x)})    
+df = pd.read_csv("love_input_work_orders.csv",encoding = 'unicode_escape',converters={'WONUM': lambda x: str(x)})    
 #Read worker schedule_calendar ; "converters" helps to keep leading zeros when opening a csv file using Pandas
-dfcal = pd.read_csv("input_employee_schedule.csv",encoding = 'unicode_escape', converters={'EMPLOYEE_ID': lambda x: str(x)})
+dfcal = pd.read_csv("love_input_employee_schedule.csv",encoding = 'unicode_escape', converters={'EMPLOYEE_ID': lambda x: str(x)})
 #Read the data which shows which week we are planning for - It has one value - the date of Sunday
 dfweek = pd.read_csv("input_parameters.csv",encoding = 'unicode_escape')
 #Matrix of employees and profienicies (1-5 skill level)
-proficiency = pd.read_csv("input_employee_info.csv",converters={'EMPLOYEE_ID': lambda x: str(x)})
+proficiency = pd.read_csv("love_input_employee_info.csv",converters={'EMPLOYEE_ID': lambda x: str(x)})
 #On this file task names are associated with a task key
 taskkey = pd.read_csv("input_proficiency_master.csv")
 
@@ -1700,53 +1700,53 @@ def optimalsol_drawtable():
                   the_table._cells[(w, t)].set_facecolor("black")
     
     #%%% worker legend on day 1 only 
-    if day == 1:
-        the_table.auto_set_font_size(False)
-        the_table.set_fontsize(22)
-        the_table.scale(4, 4)
-        pl.show()
-        
-        #legend
-        text=[["1","" ],["2",""],["3", ""],["4", ""],["5", ""]]
-        colLabels = ["Proficiency level", "Number color"]
-        
-        legi=pl.table(cellText=text, colLabels=colLabels, 
-                            colWidths = [0.2,0.2], loc='lower right')
-        
-        legi._cells[(1, 1)].set_facecolor("darkorchid")
-        legi._cells[(2, 1)].set_facecolor("deeppink")
-        legi._cells[(3, 1)].set_facecolor("red")
-        legi._cells[(4, 1)].set_facecolor("darkorange")
-        legi._cells[(5, 1)].set_facecolor("seagreen")
-        
-        ax = fig.add_subplot()
-        legi.auto_set_font_size(False)
-        pl.axis('off')
-        legi.set_fontsize(14)
-        legi.scale(2,2)
-        
-        pl.show()
-        
-        # job legend
-        textjob=[["1","" ],["2",""],["3", ""],["4", ""],["5", ""]]
-        coljobLabels = ["Job priority level", "Cell color"]
-        
-        legijob=pl.table(cellText=textjob, colLabels=coljobLabels, 
-                            colWidths = [0.2,0.2], loc='center right')
-        
-        legijob._cells[(1, 1)].set_facecolor("darkblue")
-        legijob._cells[(2, 1)].set_facecolor("deepskyblue")
-        legijob._cells[(3, 1)].set_facecolor("springgreen")
-        legijob._cells[(4, 1)].set_facecolor("yellow")
-        legijob._cells[(5, 1)].set_facecolor("tan")
-        
-        #ax = fig.add_subplot()
-        legijob.auto_set_font_size(False)
-        pl.axis('off')
-        legijob.set_fontsize(14)
-        legijob.scale(2,2)
-                   
-        pl.show() 
+    # if day == 1:
+    the_table.auto_set_font_size(False)
+    the_table.set_fontsize(22)
+    the_table.scale(4, 4)
+    pl.show()
+    
+    #legend
+    text=[["1","" ],["2",""],["3", ""],["4", ""],["5", ""]]
+    colLabels = ["Proficiency level", "Number color"]
+    
+    legi=pl.table(cellText=text, colLabels=colLabels, 
+                        colWidths = [0.2,0.2], loc='lower right')
+    
+    legi._cells[(1, 1)].set_facecolor("darkorchid")
+    legi._cells[(2, 1)].set_facecolor("deeppink")
+    legi._cells[(3, 1)].set_facecolor("red")
+    legi._cells[(4, 1)].set_facecolor("darkorange")
+    legi._cells[(5, 1)].set_facecolor("seagreen")
+    
+    ax = fig.add_subplot()
+    legi.auto_set_font_size(False)
+    pl.axis('off')
+    legi.set_fontsize(14)
+    legi.scale(2,2)
+    
+    pl.show()
+    
+    # job legend
+    textjob=[["1","" ],["2",""],["3", ""],["4", ""],["5", ""]]
+    coljobLabels = ["Job priority level", "Cell color"]
+    
+    legijob=pl.table(cellText=textjob, colLabels=coljobLabels, 
+                        colWidths = [0.2,0.2], loc='center right')
+    
+    legijob._cells[(1, 1)].set_facecolor("darkblue")
+    legijob._cells[(2, 1)].set_facecolor("deepskyblue")
+    legijob._cells[(3, 1)].set_facecolor("springgreen")
+    legijob._cells[(4, 1)].set_facecolor("yellow")
+    legijob._cells[(5, 1)].set_facecolor("tan")
+    
+    #ax = fig.add_subplot()
+    legijob.auto_set_font_size(False)
+    pl.axis('off')
+    legijob.set_fontsize(14)
+    legijob.scale(2,2)
+               
+    pl.show() 
         
     #%% Save optimal variable values:
     optaj = var_vals[len(lowerj) * numw * numt + len(lowerj) * numt + numJ:len(lowerj) * numw * numt + len(lowerj) * numt + numJ+ len(lowerj)]
@@ -1859,7 +1859,7 @@ def csv_ouput():
     return optaj, opty, optx, optdelta;
 
 #%%************Sequential Optimization (Repeat optimization 5 times to get a weeklong schedule)**************
-while day <=5:
+while day <=1:
     
 
     #Remove outage-required jobs NOT DUE today
